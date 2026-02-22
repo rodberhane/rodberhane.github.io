@@ -43,24 +43,19 @@ body {
     cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"><circle cx="15" cy="15" r="8" fill="%23FF1493" opacity="0.6"/><circle cx="15" cy="15" r="4" fill="%23FF1493"/></svg>') 15 15, auto;
 }
 
-/* ==================== ANIMATED BACKGROUND ==================== */
-.animated-bg {
+/* ==================== HERO CANVAS BACKGROUND ==================== */
+.hero-canvas {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 20% 50%, rgba(255, 20, 147, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(194, 24, 91, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 40% 20%, rgba(255, 20, 147, 0.05) 0%, transparent 50%);
     pointer-events: none;
-    animation: drift 20s ease-in-out infinite;
     z-index: 0;
 }
 
-@keyframes drift {
-    0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(30px, -30px); }
+body.light-mode .hero-canvas {
+    opacity: 0;
 }
 
 /* ==================== SCROLL PROGRESS BAR ==================== */
@@ -388,11 +383,12 @@ section {
     padding: 0 3rem;
 }
 
-.home-text h1 {
+.home-text h1,
+.hero-heading {
     font-family: 'Playfair Display', serif;
-    font-size: 4.5rem;
+    font-size: clamp(2.2rem, 3.8vw, 3.8rem);
     font-weight: 600;
-    line-height: 1.1;
+    line-height: 1.38;
     margin-bottom: 1.5rem;
     color: var(--text-light);
 }
@@ -413,6 +409,14 @@ body.light-mode .home-text h1 {
 
 .cursor-blink {
     animation: blink 0.7s infinite;
+}
+
+.hero-cursor {
+    color: var(--primary-pink);
+    font-weight: 300;
+    animation: blink 0.7s infinite;
+    text-shadow: 0 0 14px rgba(255, 20, 147, 0.95);
+    margin-left: 2px;
 }
 
 @keyframes blink {
@@ -607,6 +611,171 @@ body.light-mode .about-card li {
     content: '▸ ';
     color: var(--primary-pink);
     margin-right: 0.5rem;
+}
+
+/* ==================== EDUCATION CARDS ==================== */
+.edu-cards-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.8rem;
+    margin-bottom: 3rem;
+}
+
+.edu-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.35s ease;
+}
+
+.edu-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-pink), var(--deep-rose));
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+
+.edu-card:hover {
+    border-color: rgba(255, 20, 147, 0.5);
+    box-shadow: 0 20px 60px rgba(255, 20, 147, 0.18);
+    transform: translateY(-6px);
+}
+
+.edu-card:hover::after {
+    opacity: 1;
+}
+
+.edu-card-icon {
+    font-size: 1.5rem;
+    color: var(--primary-pink);
+    margin-bottom: 1.2rem;
+    opacity: 0.9;
+}
+
+.edu-card-degree {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-light);
+    line-height: 1.35;
+    margin-bottom: 0.5rem;
+}
+
+body.light-mode .edu-card-degree {
+    color: var(--text-dark);
+}
+
+.edu-card-institution {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--primary-pink);
+    line-height: 1.4;
+    margin-bottom: 1.3rem;
+}
+
+.edu-card-details {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.edu-card-details li {
+    font-size: 0.85rem;
+    color: var(--text-secondary-light);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0;
+}
+
+body.light-mode .edu-card-details li {
+    color: var(--text-secondary-dark);
+}
+
+.edu-card-details li::before {
+    content: '▸';
+    color: var(--primary-pink);
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.edu-modules-card {
+    grid-column: 1 / -1;
+}
+
+.edu-modules-card #modulesList {
+    columns: 2;
+    column-gap: 3rem;
+}
+
+@media (max-width: 1024px) {
+    .edu-cards-row {
+        grid-template-columns: 1fr;
+    }
+    .edu-modules-card #modulesList {
+        columns: 1;
+    }
+}
+
+/* ==================== LEGACY (kept for safety) ==================== */
+.education-extra {
+    margin-top: 1.4rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.extra-edu-degree {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 0.25rem;
+}
+
+body.light-mode .extra-edu-degree {
+    color: var(--text-dark);
+}
+
+.extra-edu-institution {
+    font-size: 0.85rem;
+    color: var(--text-secondary-light);
+    margin-bottom: 0.5rem;
+}
+
+body.light-mode .extra-edu-institution {
+    color: var(--text-secondary-dark);
+}
+
+.extra-edu-details {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.extra-edu-details li {
+    padding: 0.25rem 0;
+    font-size: 0.88rem;
+    color: var(--text-secondary-light);
+}
+
+body.light-mode .extra-edu-details li {
+    color: var(--text-secondary-dark);
+}
+
+.extra-edu-details li::before {
+    content: none;
 }
 
 .about-bio {

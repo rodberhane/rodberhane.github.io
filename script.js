@@ -4,16 +4,16 @@ let config = {
   "personal": {
     "firstName": "Rodas",
     "lastName": "Berhane",
-    "title": "Data Analyst & Business Intelligence Specialist",
-    "bio": "MSc Business Analytics Candidate at UCD Dublin",
-    "tagline": "I turn messy data into clear insights and actionable strategies.",
+    "title": "MSc Business Analytics | Applied Mathematics | Data Analyst",
+    "bio": "MSc Business Analytics Candidate at UCD Smurfit",
+    "tagline": "I turn chaos to clarity to build meaningful stories.",
     "email": "rodas.okubagabir@ucdconnect.ie",
     "location": "Dublin, Ireland"
   },
   "social": {
     "linkedin": "https://www.linkedin.com/in/rodasokubagabir",
     "github": "https://github.com/rodberhane",
-    "twitter": ""
+    "twitter": "https://x.com/RBerhane2008"
   },
   "files": {
     "resume": "documents/Rodas-Berhane-Resume.pdf",
@@ -33,70 +33,114 @@ let config = {
   "about": {
     "subtitle": "Where I studied",
     "education": {
-      "institution": "University College Dublin (UCD Smurfit)",
+      "institution": "UCD Michael Smurfit Graduate Business School",
       "degree": "MSc Business Analytics",
-      "gpa": "First Class Honours",
-      "graduationDate": "May 2026",
+      "gpa": "Expected 2:1 — Second Class Honours Grade 1",
+      "graduationDate": "Sep 2025 – Present",
       "modules": [
-        "Advanced Data Analytics",
-        "Machine Learning",
-        "Business Intelligence",
-        "Data Visualization",
-        "Statistical Methods"
+        "Data Structures and Algorithms",
+        "Object Oriented Programming",
+        "Database Concepts",
+        "Discrete Mathematics and Graph Theory",
+        "Linear Programming",
+        "Numerical Methods",
+        "Mathematical Statistics",
+        "Probability and Statistics",
+        "Differential Equations",
+        "Linear Algebra II",
+        "Optimisation / Mathematical Methods"
       ]
     },
     "paragraphs": [
-      "I'm a passionate data analyst with expertise in transforming complex datasets into actionable business insights. My background combines strong analytical foundations with practical experience in building data solutions that drive strategic decisions.",
-      "I specialize in SQL database design, Python for data processing, and creating compelling visualizations in Tableau and Power BI. I'm particularly interested in business intelligence, data governance, and helping organizations unlock the value in their data."
+      "My name is Rodas. I graduated in Applied Mathematics and Computer Science because I was genuinely fascinated by how numbers and systems work together — not just the theory, but how they solve real problems.",
+      "That passion for data naturally led me to pursue an MSc in Business Analytics at UCD on a full scholarship. I wanted to understand not just the technical side, but the business impact — what the data actually means and how to use it to make better decisions.",
+      "Now I'm focused on bridging that gap between complex analysis and clear insights. Whether it's building models, querying databases, or visualising data in Tableau, I care about the story the numbers tell and how it drives action.",
+      "Based in Dublin, graduating 2026. Looking for data analytics, BI, or strategy roles where I can keep solving problems that matter."
+    ],
+    "additionalEducation": [
+      {
+        "degree": "BSc Applied Mathematics",
+        "institution": "Eritrea Institute of Technology, Asmara, Eritrea",
+        "gpa": "Grade: 1.1 — First Class Honours",
+        "period": "Sep 2016 – Jul 2020"
+      },
+      {
+        "degree": "Diploma in Accounting & Finance in Business and Management",
+        "institution": "Cambridge International College, Jersey, UK",
+        "gpa": "Grade: 3.5",
+        "period": "Jan 2021 – Dec 2022"
+      }
     ],
     "stats": {
-      "projectsCompleted": 6,
+      "projectsCompleted": 8,
       "organizationsWorked": 3,
-      "yearsInTech": 2
+      "yearsInTech": 4
     }
   },
   "experience": [
     {
-      "title": "Data Analyst Intern",
-      "company": "TechCorp Analytics",
-      "location": "Dublin, Ireland",
-      "startDate": "Jun 2024",
-      "endDate": "Aug 2024",
+      "title": "Instructor & Database Manager",
+      "company": "Eritrean Airforce",
+      "location": "Asmara, Eritrea",
+      "startDate": "Oct 2020",
+      "endDate": "Feb 2023",
       "highlights": [
-        "Built automated ETL pipelines reducing manual reporting time by 40%",
-        "Created real-time dashboards monitoring KPIs for executive leadership",
-        "Identified data quality issues affecting 2+ business metrics"
+        "Delivered instruction in Python programming and pre-calculus mathematics",
+        "Designed and maintained structured database systems for operational data",
+        "Analysed datasets to improve reporting accuracy and decision support",
+        "Collaborated across departments during rotational assignments to support data management initiatives"
       ]
     },
     {
-      "title": "Business Analyst",
-      "company": "FinanceFirst",
-      "location": "Dublin, Ireland",
-      "startDate": "Sep 2023",
-      "endDate": "May 2024",
+      "title": "Database Systems Designer",
+      "company": "Freelance",
+      "location": "Asmara, Eritrea",
+      "startDate": "Jan 2021",
+      "endDate": "Feb 2023",
       "highlights": [
-        "Analyzed customer behavior data to identify retention opportunities",
-        "Designed and validated A/B testing framework improving conversion by 15%",
-        "Collaborated with product team to define data requirements for new features"
+        "Designed and implemented customised database management systems for car rental businesses",
+        "Improved operational efficiency through structured data workflows",
+        "Advised small businesses on database optimisation and data governance practices",
+        "Provided introductory programming tuition (Scratch) to junior learners"
       ]
     },
     {
-      "title": "Data Science Intern",
-      "company": "DataDriven Solutions",
-      "location": "Remote",
-      "startDate": "Jan 2023",
-      "endDate": "Mar 2023",
+      "title": "Customer Service Agent",
+      "company": "Betna Ruftana Remittance Services",
+      "location": "Kampala, Uganda",
+      "startDate": "Jul 2023",
+      "endDate": "Jan 2025",
       "highlights": [
-        "Developed predictive models for customer churn with 85% accuracy",
-        "Automated monthly reporting process saving 8 hours per week",
-        "Documented data pipelines and best practices for team reuse"
+        "Delivered real-time remote customer support for cross-border payment services",
+        "Resolved client inquiries efficiently while maintaining high service standards",
+        "Supported transaction accuracy and compliance within digital remittance operations"
       ]
     }
   ],
   "projects": [
     {
+      "title": "UrbanEats Expansion Strategy",
+      "description": "Analysed 4 years of demand data to identify operational bottlenecks and designed a 5-branch expansion strategy; allocated €1.36M investment, €220K under budget",
+      "tags": ["Python", "Holt-Winters", "Forecasting"],
+      "category": "python",
+      "links": {
+        "report": "https://github.com/rodberhane",
+        "demo": ""
+      }
+    },
+    {
+      "title": "Airline Hub Optimisation Model",
+      "description": "Mixed-integer optimisation model using FICO Xpress (Mosel) for a 12-city airline expansion with sensitivity analysis on demand, emissions and budget scenarios",
+      "tags": ["FICO Xpress", "Mosel", "Optimisation"],
+      "category": "optimisation",
+      "links": {
+        "report": "https://github.com/rodberhane",
+        "demo": ""
+      }
+    },
+    {
       "title": "AI-Powered Meeting Minutes Generator",
-      "description": "Automated system using Whisper AI for transcription and LLM-powered summarization",
+      "description": "Automated system using Whisper AI for transcription and LLM-powered summarisation of meeting notes",
       "tags": ["Python", "LLM", "Streamlit"],
       "category": "python",
       "links": {
@@ -105,82 +149,52 @@ let config = {
       }
     },
     {
-      "title": "AIB Risk Capital Dashboard",
-      "description": "Comprehensive dashboard analyzing credit risk and capital allocation strategies",
-      "tags": ["Python", "Tableau", "Risk Analysis"],
-      "category": "tableau python",
+      "title": "Telco Customer Churn Analysis",
+      "description": "Analysed 7,043 customer records using Python and Pandas for data cleaning, queried patterns across contract type, tenure, payment method and internet service, then visualised findings in an interactive Tableau dashboard published live on Tableau Public.",
+      "tags": ["Python", "Pandas", "SQL", "Tableau"],
+      "category": "python tableau sql",
       "links": {
-        "github": "https://github.com/rodberhane/aib-risk-capital-dashboard",
-        "demo": "https://public.tableau.com/app/profile/rodas.okubagabir"
+        "report": "#",
+        "tableau": "https://public.tableau.com/app/profile/rodiiberhane/viz/churnpredictionviz/Dashboard1"
       }
     },
     {
-      "title": "SQL Data Warehouse + BI Dashboard",
-      "description": "Star schema data warehouse with automated ETL and interactive Tableau dashboard",
-      "tags": ["SQL", "PostgreSQL", "Tableau"],
-      "category": "sql tableau",
-      "links": {
-        "github": "https://github.com/rodberhane/data-warehouse-project",
-        "demo": ""
-      }
-    },
-    {
-      "title": "Data Quality + KPI Monitoring",
-      "description": "Automated data quality checks with real-time KPI monitoring and alerts",
-      "tags": ["Python", "Pandas", "Data Quality"],
+      "title": "Customer Churn Prediction",
+      "description": "Machine learning model predicting customer churn using Logistic Regression and Random Forest, deployed as a live Streamlit web app. Combines Python, ML, and business storytelling.",
+      "tags": ["Python", "Machine Learning", "Streamlit"],
       "category": "python",
       "links": {
-        "github": "https://github.com/rodberhane/kpi-monitoring-system",
-        "demo": ""
-      }
-    },
-    {
-      "title": "Data Governance Mini-System",
-      "description": "Data catalog with ownership tracking and quality scoring system",
-      "tags": ["Python", "Data Governance", "SQL"],
-      "category": "python sql",
-      "links": {
-        "github": "https://github.com/rodberhane/data-governance-system",
-        "demo": ""
-      }
-    },
-    {
-      "title": "Customer Churn Prediction Model",
-      "description": "ML model predicting customer churn with 87% accuracy and interactive visualizations",
-      "tags": ["Python", "ML", "Scikit-learn"],
-      "category": "python",
-      "links": {
-        "github": "https://github.com/rodberhane/churn-prediction",
+        "github": "https://github.com/rodberhane",
         "demo": ""
       }
     }
   ],
   "volunteer": [
     {
-      "organization": "UCD Analytics Club",
-      "role": "Workshop Facilitator",
-      "startDate": "Jun 2024",
-      "endDate": "Present",
-      "description": "Lead monthly workshops teaching SQL and data visualization to aspiring analysts. Mentored 15+ students in their first data projects."
+      "organization": "University College Dublin",
+      "role": "Global Leadership Program",
+      "startDate": "2025",
+      "endDate": "2026",
+      "description": "Participating in UCD's Global Leadership Program contributing to community impact initiatives."
     },
     {
-      "organization": "Women in Data Ireland",
-      "role": "Volunteer Mentor",
-      "startDate": "Jan 2024",
-      "endDate": "Present",
-      "description": "Mentor women transitioning into data roles, providing career guidance and technical support. Helped 5 mentees secure analyst positions."
+      "organization": "Eritrea Institute of Technology",
+      "role": "Editorial Volunteer",
+      "startDate": "2019",
+      "endDate": "2020",
+      "description": "Contributed to the 14th Commencement Graduation Magazine, supporting the editorial team in documenting institutional milestones and celebrating student achievements."
     },
     {
-      "organization": "Open Data Community",
-      "role": "Data Analyst Volunteer",
-      "startDate": "Sep 2023",
-      "endDate": "Dec 2023",
-      "description": "Built donation tracking dashboard for non-profit organization, enabling data-driven fundraising strategy. Saved organization 10+ hours monthly."
+      "organization": "Eritrea Institute of Technology",
+      "role": "Academic Events Organiser",
+      "startDate": "2017",
+      "endDate": "2020",
+      "description": "Assisted in organising annual academic events across the institution, coordinating logistics and supporting student engagement activities."
     }
   ],
   "contact": {
-    "heading": "Let's create something amazing together",
-    "message": "I'm always interested in discussing data-driven solutions and new opportunities. Whether you have a project in mind or just want to chat about analytics, feel free to reach out.",
+    "heading": "Let's create something meaningful together",
+    "message": "I'm always open to discussing data-driven opportunities, analytics projects, or just a conversation about turning complex problems into clear solutions. Feel free to reach out.",
     "formPlaceholders": {
       "name": "Your name",
       "email": "your@email.com",
@@ -280,6 +294,15 @@ function populateContent() {
         document.getElementById('footerLinkedin').href = linkedinUrl;
         document.getElementById('footerGithub').href = githubUrl;
         document.getElementById('footerEmail').href = `mailto:${email}`;
+
+        if (config.social.twitter) {
+            const twitterUrl = config.social.twitter;
+            const els = ['twitterIcon', 'socialTwitter', 'footerTwitter'];
+            els.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.href = twitterUrl;
+            });
+        }
     }
 
     // Profile image
@@ -290,13 +313,26 @@ function populateContent() {
     // About section
     if (config.about) {
         const edu = config.about.education;
-        document.getElementById('institution').innerHTML = `<span style="font-size: 1.3rem;">${edu.degree}</span><br><span style="font-size: 0.95rem; color: var(--text-secondary-light);">${edu.institution}</span>`;
 
-        let eduHtml = `
-            <li><strong>GPA:</strong> ${edu.gpa}</li>
-            <li><strong>Graduation:</strong> ${edu.graduationDate}</li>
-        `;
-        document.getElementById('educationList').innerHTML = eduHtml;
+        // Render individual education cards
+        const allEdu = [
+            { degree: edu.degree, institution: edu.institution, gpa: edu.gpa, period: edu.graduationDate },
+            ...(config.about.additionalEducation || [])
+        ];
+        const eduGrid = document.getElementById('educationCardsGrid');
+        if (eduGrid) {
+            eduGrid.innerHTML = allEdu.map(e => `
+                <div class="edu-card">
+                    <div class="edu-card-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="edu-card-degree">${e.degree}</div>
+                    <div class="edu-card-institution">${e.institution}</div>
+                    <ul class="edu-card-details">
+                        <li>${e.gpa}</li>
+                        <li>${e.period}</li>
+                    </ul>
+                </div>
+            `).join('');
+        }
 
         let modulesHtml = edu.modules.map(m => `<li>${m}</li>`).join('');
         document.getElementById('modulesList').innerHTML = modulesHtml;
@@ -352,7 +388,9 @@ function populateContent() {
                         ${proj.tags.map(tag => `<span class="tech-tag">${tag}</span>`).join('')}
                     </div>
                     <div class="project-links">
+                        ${proj.links.report ? `<a href="${proj.links.report}" target="_blank" class="project-link">Report</a>` : ''}
                         ${proj.links.github ? `<a href="${proj.links.github}" target="_blank" class="project-link">GitHub</a>` : ''}
+                        ${proj.links.tableau ? `<a href="${proj.links.tableau}" target="_blank" class="project-link">Tableau Dashboard</a>` : ''}
                         ${proj.links.demo ? `<a href="${proj.links.demo}" target="_blank" class="project-link">Live Demo</a>` : ''}
                     </div>
                 </div>
@@ -394,34 +432,198 @@ function populateContent() {
 
 /* ==================== TYPEWRITER EFFECT ==================== */
 function initTypewriter() {
-    const words = ['decisions.', 'clarity.', 'impact.', 'stories.'];
-    let wordIndex = 0;
-    let letterIndex = 0;
-    let isDeleting = false;
-    const typewriterElement = document.getElementById('typewriter');
+    const sentence = "Welcome \u2014 let\u2019s meet. I\u2019m Rodas. I bring chaos to clarity to build meaningful stories.";
+    const el = document.getElementById('typewriter');
+    if (!el) return;
 
-    function typewriter() {
-        const currentWord = words[wordIndex];
+    let charIndex = 0;
 
-        if (isDeleting) {
-            typewriterElement.textContent = currentWord.substring(0, letterIndex - 1);
-            letterIndex--;
-        } else {
-            typewriterElement.textContent = currentWord.substring(0, letterIndex + 1);
-            letterIndex++;
-        }
-
-        if (!isDeleting && letterIndex === currentWord.length) {
-            setTimeout(() => { isDeleting = true; }, 1500);
-        } else if (isDeleting && letterIndex === 0) {
-            isDeleting = false;
-            wordIndex = (wordIndex + 1) % words.length;
-        }
-
-        setTimeout(typewriter, isDeleting ? 50 : 100);
+    function getDelay(char) {
+        if (char === '.' || char === '\u2014') return 480;
+        if (char === ',') return 260;
+        if (char === ' ') return 55 + Math.random() * 25;
+        return 60 + Math.random() * 55;
     }
 
-    typewriter();
+    function type() {
+        el.textContent = sentence.substring(0, charIndex);
+        if (charIndex === sentence.length) {
+            setTimeout(() => { charIndex = 0; type(); }, 2000);
+            return;
+        }
+        const nextChar = sentence[charIndex];
+        charIndex++;
+        setTimeout(type, getDelay(nextChar));
+    }
+
+    setTimeout(type, 400);
+}
+
+/* ==================== HERO CANVAS BACKGROUND ==================== */
+function initHeroCanvas() {
+    const canvas = document.getElementById('heroCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    const PINK = 'rgba(255, 20, 147,';
+    const GRID = 65;
+    const PARTICLE_COUNT = 68;
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let smoothX = mouseX;
+    let smoothY = mouseY;
+    let time = 0;
+
+    // Deterministic glow nodes — no random per frame, no flicker
+    function isGlowNode(col, row) {
+        return ((col * 17 + row * 11) % 8) === 0;
+    }
+
+    // Particles
+    const particles = Array.from({ length: PARTICLE_COUNT }, () => ({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        size: Math.random() * 1.6 + 0.5,
+        vx: (Math.random() - 0.5) * 0.22,
+        vy: (Math.random() - 0.5) * 0.22,
+        opacity: Math.random() * 0.45 + 0.12,
+        phase: Math.random() * Math.PI * 2
+    }));
+
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    function drawGrid(ox, oy) {
+        const sx = -(((ox % GRID) + GRID) % GRID);
+        const sy = -(((oy % GRID) + GRID) % GRID);
+
+        ctx.lineWidth = 0.5;
+        ctx.strokeStyle = `${PINK} 0.045)`;
+        ctx.beginPath();
+        for (let x = sx; x < canvas.width + GRID; x += GRID) {
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, canvas.height);
+        }
+        for (let y = sy; y < canvas.height + GRID; y += GRID) {
+            ctx.moveTo(0, y);
+            ctx.lineTo(canvas.width, y);
+        }
+        ctx.stroke();
+
+        // Glowing intersection nodes
+        let col = 0;
+        for (let x = sx; x < canvas.width + GRID; x += GRID, col++) {
+            let row = 0;
+            for (let y = sy; y < canvas.height + GRID; y += GRID, row++) {
+                if (isGlowNode(col, row)) {
+                    const pulse = 0.5 + 0.5 * Math.sin(time * 1.4 + col * 0.9 + row * 0.7);
+                    ctx.shadowBlur = 7;
+                    ctx.shadowColor = `${PINK} 0.7)`;
+                    ctx.fillStyle = `${PINK} ${0.08 + 0.28 * pulse})`;
+                    ctx.beginPath();
+                    ctx.arc(x, y, 1.8, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+        }
+        ctx.shadowBlur = 0;
+    }
+
+    function drawFlowLines(oy) {
+        for (let i = 0; i < 4; i++) {
+            const baseY = canvas.height * (i + 1) / 5;
+            const amp = 22 + i * 9;
+            const freq = 0.007 - i * 0.0008;
+            ctx.beginPath();
+            ctx.strokeStyle = `${PINK} ${0.038 + i * 0.012})`;
+            ctx.lineWidth = 0.9;
+            for (let x = 0; x <= canvas.width; x += 4) {
+                const y = baseY + Math.sin(time * 0.42 + x * freq + i * 1.3) * amp + oy * 0.35;
+                x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+        }
+    }
+
+    function updateAndDrawParticles() {
+        ctx.save();
+        ctx.shadowBlur = 13;
+        ctx.shadowColor = `${PINK} 0.75)`;
+
+        particles.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+            p.phase += 0.018;
+
+            if (p.x < -12) p.x = canvas.width + 12;
+            if (p.x > canvas.width + 12) p.x = -12;
+            if (p.y < -12) p.y = canvas.height + 12;
+            if (p.y > canvas.height + 12) p.y = -12;
+
+            // Mouse repulsion
+            const dx = p.x - smoothX;
+            const dy = p.y - smoothY;
+            const distSq = dx * dx + dy * dy;
+            const R = 115;
+            if (distSq < R * R && distSq > 0) {
+                const dist = Math.sqrt(distSq);
+                const force = ((R - dist) / R) * 1.6;
+                p.x += (dx / dist) * force;
+                p.y += (dy / dist) * force;
+            }
+
+            const op = p.opacity * (0.72 + 0.28 * Math.sin(p.phase));
+            const sz = p.size + Math.sin(p.phase) * 0.4;
+            ctx.fillStyle = `${PINK} ${op})`;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, sz, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        ctx.restore();
+    }
+
+    function animate() {
+        time += 0.016;
+
+        // Smooth mouse follow
+        smoothX += (mouseX - smoothX) * 0.05;
+        smoothY += (mouseY - smoothY) * 0.05;
+
+        // Parallax offsets
+        const ox = (smoothX / canvas.width - 0.5) * 42;
+        const oy = (smoothY / canvas.height - 0.5) * 42;
+
+        // Dark background
+        ctx.fillStyle = '#0b0b0b';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Radial glow following mouse
+        const g = ctx.createRadialGradient(smoothX, smoothY, 0, smoothX, smoothY, Math.max(canvas.width, canvas.height) * 0.44);
+        g.addColorStop(0, 'rgba(255, 20, 147, 0.07)');
+        g.addColorStop(0.45, 'rgba(194, 24, 91, 0.03)');
+        g.addColorStop(1, 'transparent');
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        drawGrid(ox * 1.6, oy * 1.6);
+        drawFlowLines(oy);
+        updateAndDrawParticles();
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
 }
 
 /* ==================== SCROLL PROGRESS ==================== */
@@ -641,6 +843,7 @@ async function initAll() {
 
     if (!config || Object.keys(config).length === 0) return;
 
+    initHeroCanvas();
     initTypewriter();
     initScrollProgress();
     initCursor();

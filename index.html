@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Elite Portfolio - Configurable via JSON">
     <title id="pageTitle">Portfolio</title>
-    <base href="/my_portfolio/">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,8 +18,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="animated-bg"></div>
+    <!-- Hero Canvas Background -->
+    <canvas id="heroCanvas" class="hero-canvas"></canvas>
 
     <!-- Scroll Progress Bar -->
     <div class="scroll-progress"></div>
@@ -53,6 +52,9 @@
             <a href="#" target="_blank" class="nav-icon" id="githubIcon">
                 <i class="fab fa-github"></i>
             </a>
+            <a href="#" target="_blank" class="nav-icon" id="twitterIcon">
+                <i class="fab fa-x-twitter"></i>
+            </a>
             <button class="theme-toggle" id="themeToggle">
                 <i class="fas fa-moon"></i>
             </button>
@@ -81,9 +83,8 @@
         <section id="home">
             <div class="home-content">
                 <div class="home-text">
-                    <h1>
-                        I turn data into<br>
-                        <span class="typewriter-word"><span id="typewriter"></span><span class="cursor-blink">|</span></span>
+                    <h1 class="hero-heading">
+                        <span id="typewriter"></span><span class="hero-cursor">|</span>
                     </h1>
                     <p class="home-bio" id="homeBio"></p>
                     <div class="home-buttons">
@@ -99,6 +100,9 @@
                         </a>
                         <a href="#" class="social-link" id="socialEmail">
                             <i class="fas fa-envelope"></i> EMAIL
+                        </a>
+                        <a href="#" target="_blank" class="social-link" id="socialTwitter">
+                            <i class="fab fa-x-twitter"></i> X
                         </a>
                     </div>
                 </div>
@@ -116,14 +120,11 @@
             <div class="section-label">ABOUT</div>
             <h2 class="section-heading">Where I <span class="highlight">studied</span></h2>
 
-            <div class="about-grid">
-                <div class="about-card">
-                    <h3>Education</h3>
-                    <div class="value" id="institution"></div>
-                    <ul id="educationList"></ul>
-                </div>
+            <!-- Education individual cards -->
+            <div class="edu-cards-row" id="educationCardsGrid"></div>
 
-                <div class="about-card">
+            <div class="about-grid">
+                <div class="about-card edu-modules-card">
                     <h3>Key Modules</h3>
                     <ul id="modulesList"></ul>
                 </div>
@@ -240,6 +241,9 @@
                 </a>
                 <a href="#" class="footer-link" id="footerEmail">
                     <i class="fas fa-envelope"></i>
+                </a>
+                <a href="#" target="_blank" class="footer-link" id="footerTwitter">
+                    <i class="fab fa-x-twitter"></i>
                 </a>
             </div>
         </div>
