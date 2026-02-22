@@ -1,0 +1,202 @@
+{
+  "personal": {
+    "firstName": "Rodas",
+    "lastName": "Berhane",
+    "title": "Data Analyst & Business Intelligence Specialist",
+    "bio": "MSc Business Analytics Candidate at UCD Dublin",
+    "tagline": "I turn messy data into clear insights and actionable strategies.",
+    "email": "your.email@example.com",
+    "location": "Dublin, Ireland"
+  },
+
+  "social": {
+    "linkedin": "https://www.linkedin.com/in/yourprofile",
+    "github": "https://github.com/yourprofile",
+    "twitter": "https://twitter.com/yourprofile"
+  },
+
+  "files": {
+    "resume": "documents/resume.pdf",
+    "profileImage": "images/profile.jpg"
+  },
+
+  "theme": {
+    "primaryPink": "#FF1493",
+    "deepRose": "#C2185B",
+    "darkBackground": "#111111",
+    "lightBackground": "#f8f8f8",
+    "darkText": "#ffffff",
+    "lightText": "#1a1a1a",
+    "darkSecondaryText": "#b8b8b8",
+    "lightSecondaryText": "#666666",
+    "defaultMode": "dark"
+  },
+
+  "about": {
+    "subtitle": "Where I studied",
+    "education": {
+      "institution": "University College Dublin (UCD Smurfit)",
+      "degree": "MSc Business Analytics",
+      "gpa": "First Class Honours",
+      "graduationDate": "May 2026",
+      "modules": [
+        "Advanced Data Analytics",
+        "Machine Learning",
+        "Business Intelligence",
+        "Data Visualization",
+        "Statistical Methods"
+      ]
+    },
+    "paragraphs": [
+      "I'm a passionate data analyst with expertise in transforming complex datasets into actionable business insights. My background combines strong analytical foundations with practical experience in building data solutions that drive strategic decisions.",
+      "I specialize in SQL database design, Python for data processing, and creating compelling visualizations in Tableau and Power BI. I'm particularly interested in business intelligence, data governance, and helping organizations unlock the value in their data."
+    ],
+    "stats": {
+      "projectsCompleted": 12,
+      "organizationsWorked": 3,
+      "yearsInTech": 2
+    }
+  },
+
+  "experience": [
+    {
+      "title": "Data Analyst Intern",
+      "company": "Company Name 1",
+      "location": "Dublin, Ireland",
+      "startDate": "Jun 2024",
+      "endDate": "Aug 2024",
+      "highlights": [
+        "Built automated ETL pipelines reducing manual reporting time by 40%",
+        "Created real-time dashboards monitoring KPIs for executive leadership",
+        "Identified data quality issues affecting 2+ business metrics"
+      ]
+    },
+    {
+      "title": "Business Analyst",
+      "company": "Company Name 2",
+      "location": "Dublin, Ireland",
+      "startDate": "Sep 2023",
+      "endDate": "May 2024",
+      "highlights": [
+        "Analyzed customer behavior data to identify retention opportunities",
+        "Designed and validated A/B testing framework improving conversion by 15%",
+        "Collaborated with product team to define data requirements for new features"
+      ]
+    },
+    {
+      "title": "Data Science Intern",
+      "company": "Company Name 3",
+      "location": "Remote",
+      "startDate": "Jan 2023",
+      "endDate": "Mar 2023",
+      "highlights": [
+        "Developed predictive models for customer churn with 85% accuracy",
+        "Automated monthly reporting process saving 8 hours per week",
+        "Documented data pipelines and best practices for team reuse"
+      ]
+    }
+  ],
+
+  "projects": [
+    {
+      "title": "Customer Churn Prediction Model",
+      "description": "ML model predicting customer churn with 87% accuracy, deployed as interactive dashboard",
+      "tags": ["Python", "ML", "Pandas"],
+      "category": "ml python",
+      "links": {
+        "github": "https://github.com/yourprofile/churn-prediction",
+        "demo": "https://churn-demo.example.com"
+      }
+    },
+    {
+      "title": "Sales Analytics Dashboard",
+      "description": "Real-time Tableau dashboard tracking sales metrics across 5 regions",
+      "tags": ["Tableau", "SQL", "Business Intelligence"],
+      "category": "tableau sql",
+      "links": {
+        "github": "https://github.com/yourprofile/sales-dashboard",
+        "demo": "https://public.tableau.com/yourprofile"
+      }
+    },
+    {
+      "title": "Data Warehouse Design",
+      "description": "Built star schema data warehouse integrating data from 10+ sources",
+      "tags": ["SQL", "ETL", "Data Engineering"],
+      "category": "sql",
+      "links": {
+        "github": "https://github.com/yourprofile/data-warehouse",
+        "demo": "#"
+      }
+    },
+    {
+      "title": "Python Data Pipeline",
+      "description": "Automated ETL pipeline processing 500K+ daily records with error handling",
+      "tags": ["Python", "ETL", "PostgreSQL"],
+      "category": "python sql",
+      "links": {
+        "github": "https://github.com/yourprofile/etl-pipeline",
+        "demo": "#"
+      }
+    },
+    {
+      "title": "Real-time KPI Monitoring",
+      "description": "Streamlit app monitoring 20+ KPIs with alerts and trend analysis",
+      "tags": ["Streamlit", "Python", "Data Visualization"],
+      "category": "streamlit python",
+      "links": {
+        "github": "https://github.com/yourprofile/kpi-monitor",
+        "demo": "https://kpi-monitor.streamlit.app"
+      }
+    },
+    {
+      "title": "Data Governance Framework",
+      "description": "Implemented data lineage tracking and quality scoring system",
+      "tags": ["Data Governance", "Python", "Documentation"],
+      "category": "python",
+      "links": {
+        "github": "https://github.com/yourprofile/data-governance",
+        "demo": "#"
+      }
+    }
+  ],
+
+  "volunteer": [
+    {
+      "organization": "Local Data Community",
+      "role": "Workshop Facilitator",
+      "startDate": "Jun 2024",
+      "endDate": "Present",
+      "description": "Lead monthly workshops teaching SQL and data visualization to aspiring analysts. Mentored 15+ students in their first data projects."
+    },
+    {
+      "organization": "Women in Data",
+      "role": "Volunteer Mentor",
+      "startDate": "Jan 2024",
+      "endDate": "Present",
+      "description": "Mentor women transitioning into data roles, providing career guidance and technical support. Helped 5 mentees secure analyst positions."
+    },
+    {
+      "organization": "Non-Profit Analytics Initiative",
+      "role": "Data Analyst Volunteer",
+      "startDate": "Sep 2023",
+      "endDate": "Dec 2023",
+      "description": "Built donation tracking dashboard for non-profit organization, enabling data-driven fundraising strategy. Saved organization 10+ hours monthly."
+    }
+  ],
+
+  "contact": {
+    "heading": "Let's create something amazing together",
+    "message": "I'm always interested in discussing data-driven solutions and new opportunities. Whether you have a project in mind or just want to chat about analytics, feel free to reach out.",
+    "formPlaceholders": {
+      "name": "Your name",
+      "email": "your@email.com",
+      "message": "Tell me about your project or opportunity..."
+    }
+  },
+
+  "footer": {
+    "copyright": "2026",
+    "credit": "Designed & Built by [Your Name]"
+  }
+}
+

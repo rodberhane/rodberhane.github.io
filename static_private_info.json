@@ -1,0 +1,202 @@
+{
+  "personal": {
+    "firstName": "Rodas",
+    "lastName": "Berhane",
+    "title": "Data Analyst & Business Intelligence Specialist",
+    "bio": "MSc Business Analytics Candidate at UCD Dublin",
+    "tagline": "I turn messy data into clear insights and actionable strategies.",
+    "email": "rodas.okubagabir@ucdconnect.ie",
+    "location": "Dublin, Ireland"
+  },
+
+  "social": {
+    "linkedin": "https://www.linkedin.com/in/rodasokubagabir",
+    "github": "https://github.com/rodberhane",
+    "twitter": ""
+  },
+
+  "files": {
+    "resume": "documents/Rodas-Berhane-Resume.pdf",
+    "profileImage": "images/profile.jpg"
+  },
+
+  "theme": {
+    "primaryPink": "#FF1493",
+    "deepRose": "#C2185B",
+    "darkBackground": "#111111",
+    "lightBackground": "#f8f8f8",
+    "darkText": "#ffffff",
+    "lightText": "#1a1a1a",
+    "darkSecondaryText": "#b8b8b8",
+    "lightSecondaryText": "#666666",
+    "defaultMode": "dark"
+  },
+
+  "about": {
+    "subtitle": "Where I studied",
+    "education": {
+      "institution": "University College Dublin (UCD Smurfit)",
+      "degree": "MSc Business Analytics",
+      "gpa": "First Class Honours",
+      "graduationDate": "May 2026",
+      "modules": [
+        "Advanced Data Analytics",
+        "Machine Learning",
+        "Business Intelligence",
+        "Data Visualization",
+        "Statistical Methods"
+      ]
+    },
+    "paragraphs": [
+      "I'm a passionate data analyst with expertise in transforming complex datasets into actionable business insights. My background combines strong analytical foundations with practical experience in building data solutions that drive strategic decisions.",
+      "I specialize in SQL database design, Python for data processing, and creating compelling visualizations in Tableau and Power BI. I'm particularly interested in business intelligence, data governance, and helping organizations unlock the value in their data."
+    ],
+    "stats": {
+      "projectsCompleted": 6,
+      "organizationsWorked": 3,
+      "yearsInTech": 2
+    }
+  },
+
+  "experience": [
+    {
+      "title": "Data Analyst Intern",
+      "company": "TechCorp Analytics",
+      "location": "Dublin, Ireland",
+      "startDate": "Jun 2024",
+      "endDate": "Aug 2024",
+      "highlights": [
+        "Built automated ETL pipelines reducing manual reporting time by 40%",
+        "Created real-time dashboards monitoring KPIs for executive leadership",
+        "Identified data quality issues affecting 2+ business metrics"
+      ]
+    },
+    {
+      "title": "Business Analyst",
+      "company": "FinanceFirst",
+      "location": "Dublin, Ireland",
+      "startDate": "Sep 2023",
+      "endDate": "May 2024",
+      "highlights": [
+        "Analyzed customer behavior data to identify retention opportunities",
+        "Designed and validated A/B testing framework improving conversion by 15%",
+        "Collaborated with product team to define data requirements for new features"
+      ]
+    },
+    {
+      "title": "Data Science Intern",
+      "company": "DataDriven Solutions",
+      "location": "Remote",
+      "startDate": "Jan 2023",
+      "endDate": "Mar 2023",
+      "highlights": [
+        "Developed predictive models for customer churn with 85% accuracy",
+        "Automated monthly reporting process saving 8 hours per week",
+        "Documented data pipelines and best practices for team reuse"
+      ]
+    }
+  ],
+
+  "projects": [
+    {
+      "title": "AI-Powered Meeting Minutes Generator",
+      "description": "Automated system using Whisper AI for transcription and LLM-powered summarization",
+      "tags": ["Python", "LLM", "Streamlit"],
+      "category": "python",
+      "links": {
+        "github": "https://github.com/rodberhane/meeting-minutes-generator",
+        "demo": ""
+      }
+    },
+    {
+      "title": "AIB Risk Capital Dashboard",
+      "description": "Comprehensive dashboard analyzing credit risk and capital allocation strategies",
+      "tags": ["Python", "Tableau", "Risk Analysis"],
+      "category": "tableau python",
+      "links": {
+        "github": "https://github.com/rodberhane/aib-risk-capital-dashboard",
+        "demo": "https://public.tableau.com/app/profile/rodas.okubagabir"
+      }
+    },
+    {
+      "title": "SQL Data Warehouse + BI Dashboard",
+      "description": "Star schema data warehouse with automated ETL and interactive Tableau dashboard",
+      "tags": ["SQL", "PostgreSQL", "Tableau"],
+      "category": "sql tableau",
+      "links": {
+        "github": "https://github.com/rodberhane/data-warehouse-project",
+        "demo": ""
+      }
+    },
+    {
+      "title": "Data Quality + KPI Monitoring",
+      "description": "Automated data quality checks with real-time KPI monitoring and alerts",
+      "tags": ["Python", "Pandas", "Data Quality"],
+      "category": "python",
+      "links": {
+        "github": "https://github.com/rodberhane/kpi-monitoring-system",
+        "demo": ""
+      }
+    },
+    {
+      "title": "Data Governance Mini-System",
+      "description": "Data catalog with ownership tracking and quality scoring system",
+      "tags": ["Python", "Data Governance", "SQL"],
+      "category": "python sql",
+      "links": {
+        "github": "https://github.com/rodberhane/data-governance-system",
+        "demo": ""
+      }
+    },
+    {
+      "title": "Customer Churn Prediction Model",
+      "description": "ML model predicting customer churn with 87% accuracy and interactive visualizations",
+      "tags": ["Python", "ML", "Scikit-learn"],
+      "category": "python",
+      "links": {
+        "github": "https://github.com/rodberhane/churn-prediction",
+        "demo": ""
+      }
+    }
+  ],
+
+  "volunteer": [
+    {
+      "organization": "UCD Analytics Club",
+      "role": "Workshop Facilitator",
+      "startDate": "Jun 2024",
+      "endDate": "Present",
+      "description": "Lead monthly workshops teaching SQL and data visualization to aspiring analysts. Mentored 15+ students in their first data projects."
+    },
+    {
+      "organization": "Women in Data Ireland",
+      "role": "Volunteer Mentor",
+      "startDate": "Jan 2024",
+      "endDate": "Present",
+      "description": "Mentor women transitioning into data roles, providing career guidance and technical support. Helped 5 mentees secure analyst positions."
+    },
+    {
+      "organization": "Open Data Community",
+      "role": "Data Analyst Volunteer",
+      "startDate": "Sep 2023",
+      "endDate": "Dec 2023",
+      "description": "Built donation tracking dashboard for non-profit organization, enabling data-driven fundraising strategy. Saved organization 10+ hours monthly."
+    }
+  ],
+
+  "contact": {
+    "heading": "Let's create something amazing together",
+    "message": "I'm always interested in discussing data-driven solutions and new opportunities. Whether you have a project in mind or just want to chat about analytics, feel free to reach out.",
+    "formPlaceholders": {
+      "name": "Your name",
+      "email": "your@email.com",
+      "message": "Tell me about your project or opportunity..."
+    }
+  },
+
+  "footer": {
+    "copyright": "2026",
+    "credit": "Designed & Built by Rodas Berhane"
+  }
+}
+
