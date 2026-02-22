@@ -59,7 +59,7 @@ let config = {
     ],
     "additionalEducation": [
       {
-        "degree": "BSc Applied Mathematics",
+        "degree": "BSc Applied Mathematics and Computer Science",
         "institution": "Eritrea Institute of Technology, Asmara, Eritrea",
         "gpa": "Grade: 1.1 — First Class Honours",
         "period": "Sep 2016 – Jul 2020"
