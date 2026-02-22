@@ -159,6 +159,15 @@ let config = {
       }
     },
     {
+      "title": "Statistical Methods in Irish Property Market Analysis",
+      "description": "A statistical analysis of the Irish property market using regression modelling, hypothesis testing, and descriptive statistics to identify key pricing trends and regional patterns.",
+      "tags": ["Hypothesis Testing", "Statistics", "Excel"],
+      "category": "statistics",
+      "links": {
+        "pdf": "documents/Ireland_Property_Report1.pdf"
+      }
+    },
+    {
       "title": "Customer Churn Prediction",
       "description": "Machine learning model predicting customer churn using Logistic Regression and Random Forest, deployed as a live Streamlit web app. Combines Python, ML, and business storytelling.",
       "tags": ["Python", "Machine Learning", "Streamlit"],
@@ -388,6 +397,7 @@ function populateContent() {
                         ${proj.tags.map(tag => `<span class="tech-tag">${tag}</span>`).join('')}
                     </div>
                     <div class="project-links">
+                        ${proj.links.pdf ? `<button class="project-link" onclick="openPdfModal('${proj.links.pdf}')">📄 View Report</button>` : ''}
                         ${proj.links.report ? `<a href="${proj.links.report}" target="_blank" class="project-link">Report</a>` : ''}
                         ${proj.links.github ? `<a href="${proj.links.github}" target="_blank" class="project-link">GitHub</a>` : ''}
                         ${proj.links.tableau ? `<a href="${proj.links.tableau}" target="_blank" class="project-link">Tableau Dashboard</a>` : ''}
@@ -854,6 +864,19 @@ async function initAll() {
     initSmoothScroll();
     initFormHandling();
     attachEventListeners();
+}
+
+// PDF Modal
+function openPdfModal(src) {
+    document.getElementById('pdfModalFrame').src = src;
+    document.getElementById('pdfModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closePdfModal() {
+    document.getElementById('pdfModal').classList.remove('active');
+    document.getElementById('pdfModalFrame').src = '';
+    document.body.style.overflow = '';
 }
 
 // Start on page load

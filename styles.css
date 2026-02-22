@@ -1554,3 +1554,69 @@ body.light-mode .footer-link {
     animation: slideInRight 0.8s ease forwards;
 }
 
+/* ==================== PDF MODAL ==================== */
+.pdf-modal-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.82);
+    backdrop-filter: blur(6px);
+    z-index: 9000;
+    align-items: center;
+    justify-content: center;
+}
+
+.pdf-modal-backdrop.active {
+    display: flex;
+}
+
+.pdf-modal-box {
+    position: relative;
+    width: min(92vw, 960px);
+    height: min(90vh, 820px);
+    background: #12021a;
+    border: 1.5px solid #ff2d78;
+    border-radius: 14px;
+    box-shadow: 0 0 40px rgba(255, 45, 120, 0.35), 0 0 80px rgba(255, 45, 120, 0.12);
+    overflow: hidden;
+    animation: modalIn 0.25s ease;
+}
+
+@keyframes modalIn {
+    from { opacity: 0; transform: scale(0.95) translateY(16px); }
+    to   { opacity: 1; transform: scale(1)   translateY(0); }
+}
+
+.pdf-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    z-index: 10;
+    background: rgba(255, 45, 120, 0.15);
+    border: 1px solid rgba(255, 45, 120, 0.5);
+    color: #ff2d78;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    line-height: 1;
+}
+
+.pdf-modal-close:hover {
+    background: #ff2d78;
+    color: #fff;
+    box-shadow: 0 0 12px rgba(255, 45, 120, 0.6);
+}
+
+.pdf-modal-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
