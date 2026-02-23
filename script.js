@@ -134,8 +134,8 @@ let config = {
       "tags": ["FICO Xpress", "Mosel", "Optimisation"],
       "category": "optimisation",
       "links": {
-        "report": "https://github.com/rodberhane",
-        "demo": ""
+        "report": "documents/Airline_Hub_Optimisation_Portfolio.pdf",
+        "code": "documents/Airline_Hub_Code_Portfolio.pdf"
       }
     },
     {
@@ -144,7 +144,7 @@ let config = {
       "tags": ["Python", "LLM", "Streamlit"],
       "category": "python",
       "links": {
-        "github": "https://github.com/rodberhane/meeting-minutes-generator",
+        "github": "https://github.com/rodberhane/meeting_minutes_generator",
         "demo": ""
       }
     },
@@ -164,7 +164,7 @@ let config = {
       "tags": ["Hypothesis Testing", "Statistics", "Excel"],
       "category": "statistics",
       "links": {
-        "pdf": "documents/Ireland_Property_Report1.pdf"
+        "report": "documents/Ireland_Property_Report1.pdf"
       }
     },
     {
@@ -399,6 +399,7 @@ function populateContent() {
                     <div class="project-links">
                         ${proj.links.pdf ? `<button class="project-link" onclick="openPdfModal('${proj.links.pdf}')">📄 View Report</button>` : ''}
                         ${proj.links.report ? `<a href="${proj.links.report}" target="_blank" class="project-link">Report</a>` : ''}
+                        ${proj.links.code ? `<a href="${proj.links.code}" target="_blank" class="project-link">Code</a>` : ''}
                         ${proj.links.github ? `<a href="${proj.links.github}" target="_blank" class="project-link">GitHub</a>` : ''}
                         ${proj.links.tableau ? `<a href="${proj.links.tableau}" target="_blank" class="project-link">Tableau Dashboard</a>` : ''}
                         ${proj.links.demo ? `<a href="${proj.links.demo}" target="_blank" class="project-link">Live Demo</a>` : ''}
