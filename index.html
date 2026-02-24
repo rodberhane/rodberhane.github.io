@@ -14,6 +14,9 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -31,8 +34,7 @@
     <!-- Navbar -->
     <nav class="navbar">
         <a href="#home" class="nav-logo">
-            <span class="first" id="firstName">First</span>
-            <span class="last" id="lastName">Last</span>
+            <img src="images/profile.jpg" alt="Rodas Berhane" class="nav-avatar">
         </a>
 
         <ul class="nav-links">
@@ -45,7 +47,7 @@
         </ul>
 
         <div class="nav-actions">
-            <a href="#" class="nav-btn" id="cvButton">CV ↗</a>
+            <a href="#" class="nav-cv-text" id="cvButton">CV ↗</a>
             <a href="#" target="_blank" class="nav-icon" id="linkedinIcon">
                 <i class="fab fa-linkedin"></i>
             </a>
@@ -118,36 +120,33 @@
         <!-- ABOUT SECTION -->
         <section id="about">
             <div class="section-label">ABOUT</div>
-            <h2 class="section-heading">Where I <span class="highlight">studied</span></h2>
 
-            <!-- Education individual cards -->
-            <div class="edu-cards-row" id="educationCardsGrid"></div>
-
-            <div class="about-grid">
-                <div class="about-card edu-modules-card">
-                    <h3>Key Modules</h3>
-                    <ul id="modulesList"></ul>
-                </div>
-
-                <div class="about-bio">
-                    <h2 class="section-heading" style="margin-top: 0; font-size: 2rem;">Who I <span class="highlight">am</span></h2>
-                    <div id="bioContent"></div>
-
-                    <div class="counter-row">
-                        <div class="counter">
-                            <div class="counter-number" id="projectCount">0</div>
-                            <div class="counter-label">PROJECTS</div>
-                        </div>
-                        <div class="counter">
-                            <div class="counter-number" id="orgCount">0</div>
-                            <div class="counter-label">ORGANIZATIONS</div>
-                        </div>
-                        <div class="counter">
-                            <div class="counter-number" id="yearCount">0</div>
-                            <div class="counter-label">YEARS IN TECH</div>
-                        </div>
+            <!-- WHO I AM -->
+            <h2 class="section-heading">Who I <span class="highlight">am</span></h2>
+            <div class="about-bio">
+                <div id="bioContent"></div>
+                <div class="counter-row">
+                    <div class="counter">
+                        <div class="counter-number" id="projectCount">0</div>
+                        <div class="counter-label">PROJECTS</div>
+                    </div>
+                    <div class="counter">
+                        <div class="counter-number" id="orgCount">0</div>
+                        <div class="counter-label">ORGANIZATIONS</div>
+                    </div>
+                    <div class="counter">
+                        <div class="counter-number" id="yearCount">0</div>
+                        <div class="counter-label">YEARS IN TECH</div>
                     </div>
                 </div>
+            </div>
+
+            <!-- WHERE I STUDIED -->
+            <h2 class="section-heading about-sub-heading">Where I <span class="highlight">studied</span></h2>
+            <div class="edu-cards-row" id="educationCardsGrid"></div>
+            <div class="about-card edu-modules-card">
+                <h3>Key Modules</h3>
+                <ul id="modulesList"></ul>
             </div>
         </section>
 
@@ -168,6 +167,7 @@
 
             <div class="project-filters" id="projectFilters"></div>
             <div class="projects-grid" id="projectsContainer"></div>
+            <div class="skills-row" id="skillsRow"></div>
         </section>
 
         <!-- VOLUNTEER SECTION -->
@@ -205,23 +205,40 @@
                 </div>
 
                 <div class="contact-form">
-                    <form id="contactFormElement">
-                        <div class="form-group">
+                    <!-- Success overlay -->
+                    <div class="form-success-overlay" id="formSuccessOverlay">
+                        <div class="form-success-icon"><i class="fas fa-check-circle"></i></div>
+                        <h3>Message Sent!</h3>
+                        <p>Thanks for reaching out. I'll get back to you soon.</p>
+                        <button class="btn btn-secondary form-reset-btn" id="formResetBtn">Send Another</button>
+                    </div>
+
+                    <form id="contactFormElement" novalidate>
+                        <div class="form-group" id="fg-name">
                             <label for="name">Name</label>
-                            <input type="text" id="name" name="name" placeholder="Your name" required>
+                            <input type="text" id="name" name="from_name" placeholder="Your name" autocomplete="name">
+                            <span class="field-error" id="err-name"></span>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" id="fg-email">
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                            <input type="email" id="email" name="from_email" placeholder="your@email.com" autocomplete="email">
+                            <span class="field-error" id="err-email"></span>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" id="fg-message">
                             <label for="message">Message</label>
-                            <textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
+                            <textarea id="message" name="message" placeholder="Tell me about your project or opportunity..."></textarea>
+                            <span class="field-error" id="err-message"></span>
                         </div>
 
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                        <div class="form-submit-row">
+                            <span class="form-general-error" id="formGeneralError"></span>
+                            <button type="submit" class="btn btn-primary form-submit-btn" id="formSubmitBtn">
+                                <span class="btn-text">Send Message</span>
+                                <span class="btn-spinner" style="display:none;"><i class="fas fa-circle-notch fa-spin"></i></span>
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -231,20 +248,26 @@
     <!-- FOOTER -->
     <footer>
         <div class="footer-content">
-            <p class="footer-text" id="footerText"></p>
-            <div class="footer-links">
-                <a href="#" target="_blank" class="footer-link" id="footerLinkedin">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="#" target="_blank" class="footer-link" id="footerGithub">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="#" class="footer-link" id="footerEmail">
-                    <i class="fas fa-envelope"></i>
-                </a>
-                <a href="#" target="_blank" class="footer-link" id="footerTwitter">
-                    <i class="fab fa-x-twitter"></i>
-                </a>
+            <div class="footer-left">
+                <p class="footer-text" id="footerText"></p>
+                <div class="footer-links">
+                    <a href="#" target="_blank" class="footer-link" id="footerLinkedin">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" target="_blank" class="footer-link" id="footerGithub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="footer-link" id="footerEmail">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="#" target="_blank" class="footer-link" id="footerTwitter">
+                        <i class="fab fa-x-twitter"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-status">
+                <span class="status-dot"></span>
+                <span class="status-label">Open to Opportunities</span>
             </div>
         </div>
     </footer>

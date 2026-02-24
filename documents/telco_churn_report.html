@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Telco Customer Churn Analysis</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+/* ════════════════════════════════════
+   GOLD × DARK  —  LUXURY REPORT THEME
+════════════════════════════════════ */
+:root {
+  --bg:        #0c0c0c;
+  --surface:   #131313;
+  --surface2:  #181818;
+  --surface3:  #1e1e1e;
+  --border:    rgba(196,158,76,0.14);
+  --border-s:  rgba(196,158,76,0.32);
+  --gold:      #c49e4c;
+  --gold-lt:   #ddb96a;
+  --gold-pal:  #e8d5a3;
+  --gold-dk:   #7a6230;
+  --gold-glow: rgba(196,158,76,0.07);
+  --text:      #ede8df;
+  --text-2:    #9a9080;
+  --text-3:    #4a4438;
+  --churn:     #b83232;
+  --churn-lt:  #e06050;
+  --retain:    #2d7a62;
+  --retain-lt: #4db890;
+  --warn:      #a07820;
+  --warn-lt:   #d4a030;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased;}
+
+/* ── GOLD RULE ── */
+.gold-rule{height:1px;background:linear-gradient(90deg,transparent,var(--gold) 40%,transparent);}
+
+/* ══════════════════════════
+   COVER
+══════════════════════════ */
+.cover{
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:space-between;
+  position:relative;overflow:hidden;
+  background:#080808;
+}
+.cover-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 90% 70% at 110% -10%, rgba(196,158,76,0.09) 0%,transparent 55%),
+    radial-gradient(ellipse 60% 60% at -10% 110%, rgba(196,158,76,0.06) 0%,transparent 55%),
+    radial-gradient(ellipse 40% 40% at 50% 50%,  rgba(196,158,76,0.025) 0%,transparent 70%);
+}
+.cover-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(196,158,76,0.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(196,158,76,0.05) 1px,transparent 1px);
+  background-size:80px 80px;
+}
+/* Right accent panel */
+.cover-panel{
+  position:absolute;top:0;right:0;
+  width:320px;height:100%;
+  border-left:1px solid var(--border);
+  background:linear-gradient(180deg,rgba(196,158,76,0.03) 0%,transparent 100%);
+}
+/* Ghost number */
+.cover-ghost{
+  position:absolute;right:40px;bottom:-60px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:340px;font-weight:700;
+  color:rgba(196,158,76,0.04);
+  line-height:1;pointer-events:none;user-select:none;
+}
+
+.cover-top{
+  position:relative;
+  padding:44px 72px;
+  display:flex;justify-content:space-between;align-items:center;
+  border-bottom:1px solid var(--border);
+}
+.cover-brand{display:flex;align-items:center;gap:14px;}
+.cover-mark{
+  width:38px;height:38px;
+  border:1px solid var(--border-s);border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:20px;
+  color:var(--gold);font-weight:600;
+  background:rgba(196,158,76,0.06);
+}
+.cover-brand-name{
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--text-2);line-height:1.6;
+}
+.cover-badge{
+  font-family:'JetBrains Mono',monospace;font-size:9px;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);padding:6px 16px;
+  border:1px solid var(--border-s);border-radius:20px;
+  background:rgba(196,158,76,0.06);
+}
+
+.cover-main{
+  position:relative;
+  flex:1;padding:0 72px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.cover-eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:32px;
+  display:flex;align-items:center;gap:16px;
+}
+.cover-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold);}
+
+h1.cover-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(68px,9vw,118px);
+  font-weight:700;line-height:0.95;
+  letter-spacing:-0.02em;
+  color:var(--text);
+  margin-bottom:0;
+}
+h1.cover-title em{color:var(--gold-lt);font-style:italic;font-weight:400;}
+
+.cover-subtitle{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(20px,2.5vw,32px);
+  font-weight:400;font-style:italic;
+  color:var(--text-2);
+  margin:20px 0 60px;
+}
+
+/* KPI strip on cover */
+.cover-kpis{
+  display:flex;gap:0;
+  border:1px solid var(--border-s);border-radius:12px;
+  overflow:hidden;max-width:700px;
+  background:rgba(19,19,19,0.7);
+  backdrop-filter:blur(10px);
+}
+.ck{
+  flex:1;padding:26px 30px;
+  border-right:1px solid var(--border);
+  position:relative;
+}
+.ck:last-child{border-right:none;}
+.ck::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+}
+.ck-val{
+  font-family:'Cormorant Garamond',serif;
+  font-size:40px;font-weight:700;line-height:1;
+  color:var(--gold-lt);
+}
+.ck-val.danger{color:var(--churn-lt);}
+.ck-val.safe  {color:var(--retain-lt);}
+.ck-label{
+  font-size:10px;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--text-2);
+  margin-top:7px;
+}
+
+.cover-bottom{
+  position:relative;
+  padding:28px 72px;
+  border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.cover-footer-text{
+  font-family:'JetBrains Mono',monospace;font-size:9px;
+  letter-spacing:0.18em;text-transform:uppercase;color:var(--text-3);
+}
+.cover-conf{
+  font-family:'JetBrains Mono',monospace;font-size:9px;
+  letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--gold-dk);padding:4px 12px;
+  border:1px solid var(--gold-dk);border-radius:3px;
+}
+
+/* ══════════════════════════
+   REPORT BODY
+══════════════════════════ */
+.report{max-width:1200px;margin:0 auto;padding:80px 56px;}
+.section{margin-bottom:96px;}
+
+.section-header{
+  display:flex;align-items:center;gap:18px;
+  margin-bottom:44px;padding-bottom:20px;
+  border-bottom:1px solid var(--border);
+  position:relative;
+}
+.section-header::after{
+  content:'';position:absolute;
+  bottom:-1px;left:0;width:56px;height:1px;
+  background:var(--gold);
+}
+.section-num{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  color:var(--gold);letter-spacing:0.2em;white-space:nowrap;
+}
+h2.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:30px;font-weight:600;
+  letter-spacing:0.01em;color:var(--text);
+}
+
+/* ── KPI CARDS ── */
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:52px;}
+.kpi{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;padding:28px 22px;
+  position:relative;overflow:hidden;
+  transition:border-color 0.25s,transform 0.25s;
+}
+.kpi:hover{border-color:var(--border-s);transform:translateY(-2px);}
+.kpi::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+}
+.kpi.red::before  {background:linear-gradient(90deg,var(--churn),transparent);}
+.kpi.green::before{background:linear-gradient(90deg,var(--retain),transparent);}
+.kpi.purple::before{background:linear-gradient(90deg,#7c5cbf,transparent);}
+.kpi::after{
+  content:'';position:absolute;
+  top:0;right:0;width:48px;height:48px;
+  background:linear-gradient(225deg,var(--gold-glow),transparent 70%);
+}
+.kpi-icon{font-size:18px;margin-bottom:14px;}
+.kpi-label{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-2);margin-bottom:10px;}
+.kpi-val{
+  font-family:'Cormorant Garamond',serif;
+  font-size:48px;font-weight:700;line-height:1;
+  margin-bottom:7px;color:var(--gold-lt);
+}
+.kpi.red   .kpi-val{color:var(--churn-lt);}
+.kpi.green .kpi-val{color:var(--retain-lt);}
+.kpi.purple .kpi-val{color:#b09de0;}
+.kpi-sub{font-size:11px;color:var(--text-2);}
+
+/* ── CHART CARDS ── */
+.chart-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;}
+.chart-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-bottom:18px;}
+.chart-wide{margin-bottom:18px;}
+.chart-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;padding:28px;position:relative;overflow:hidden;
+  transition:border-color 0.2s;
+}
+.chart-card:hover{border-color:var(--border-s);}
+.chart-card::before{
+  content:'';position:absolute;
+  top:0;left:15%;right:15%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.chart-card-title{font-weight:600;font-size:13px;letter-spacing:0.02em;color:var(--text);margin-bottom:3px;}
+.chart-card-sub{font-size:11px;color:var(--text-2);margin-bottom:22px;}
+.chart-wrap{position:relative;}
+
+/* ── INSIGHTS ── */
+.insight-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px;}
+.insight{
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:10px;padding:18px 20px;
+  transition:border-color 0.2s;
+}
+.insight:hover{border-color:var(--border-s);}
+.insight-tag{
+  font-family:'JetBrains Mono',monospace;font-size:9px;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:8px;
+  display:flex;align-items:center;gap:8px;
+}
+.insight-tag::before{content:'';width:14px;height:1px;background:currentColor;}
+.insight-tag.red  {color:var(--churn-lt);}
+.insight-tag.green{color:var(--retain-lt);}
+.insight p{font-size:12px;line-height:1.65;color:var(--text-2);}
+.insight p strong{color:var(--text);font-weight:500;}
+
+/* ── TABLE ── */
+.table-wrap{border-radius:12px;overflow:hidden;border:1px solid var(--border-s);}
+.heatmap-table{width:100%;border-collapse:collapse;font-size:13px;}
+.heatmap-table thead{background:var(--surface2);}
+.heatmap-table th{
+  font-family:'JetBrains Mono',monospace;font-size:9px;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--gold);padding:14px 18px;
+  text-align:left;border-bottom:1px solid var(--border-s);font-weight:400;
+}
+.heatmap-table td{
+  padding:16px 18px;border-bottom:1px solid var(--border);
+  vertical-align:middle;color:var(--text);
+}
+.heatmap-table tbody tr:last-child td{border-bottom:none;}
+.heatmap-table tbody tr{background:var(--surface);}
+.heatmap-table tbody tr:nth-child(even){background:#111;}
+.heatmap-table tbody tr:hover td{background:var(--gold-glow)!important;}
+.bar-cell{display:flex;align-items:center;gap:10px;}
+.mini-bar{height:5px;border-radius:3px;min-width:4px;}
+.crv{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;}
+.badge{
+  display:inline-block;padding:3px 10px;border-radius:4px;
+  font-size:9px;font-weight:500;
+  font-family:'JetBrains Mono',monospace;letter-spacing:0.08em;text-transform:uppercase;
+}
+.badge.cr{background:rgba(184,50,50,0.18);color:var(--churn-lt);border:1px solid rgba(184,50,50,0.3);}
+.badge.hi{background:rgba(184,50,50,0.10);color:#c87060;border:1px solid rgba(184,50,50,0.2);}
+.badge.md{background:rgba(160,120,32,0.15);color:var(--warn-lt);border:1px solid rgba(160,120,32,0.25);}
+.badge.lo{background:rgba(45,122,98,0.15);color:var(--retain-lt);border:1px solid rgba(45,122,98,0.25);}
+
+/* ── RECS ── */
+.rec-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.rec-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;padding:26px;display:flex;gap:18px;
+  transition:border-color 0.2s;
+}
+.rec-card:hover{border-color:var(--border-s);}
+.rec-icon{
+  width:44px;height:44px;border-radius:8px;
+  border:1px solid var(--border-s);background:var(--surface2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.rec-title{font-weight:600;font-size:13px;color:var(--text);margin-bottom:6px;}
+.rec-body{font-size:12px;color:var(--text-2);line-height:1.65;}
+.rec-priority{
+  display:inline-block;margin-top:12px;
+  font-family:'JetBrains Mono',monospace;font-size:9px;
+  letter-spacing:0.15em;text-transform:uppercase;
+  padding:3px 10px;border-radius:3px;
+}
+.rec-priority.p1{background:rgba(184,50,50,0.12);color:var(--churn-lt);border:1px solid rgba(184,50,50,0.22);}
+.rec-priority.p2{background:rgba(196,158,76,0.10);color:var(--gold);border:1px solid var(--border-s);}
+.rec-priority.p3{background:rgba(45,122,98,0.10);color:var(--retain-lt);border:1px solid rgba(45,122,98,0.2);}
+
+/* ── EXECUTIVE INTRO ── */
+.exec-intro{
+  font-family:'Cormorant Garamond',serif;
+  font-size:19px;line-height:1.75;font-style:italic;
+  color:var(--text-2);max-width:840px;
+  border-left:2px solid var(--gold);
+  padding-left:24px;margin-bottom:52px;
+}
+.exec-intro strong{color:var(--gold-pal);font-style:normal;font-weight:600;}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--surface);border-top:1px solid var(--border);
+  padding:32px 72px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.footer-brand{display:flex;align-items:center;gap:14px;}
+.footer-mark{
+  width:30px;height:30px;border:1px solid var(--gold-dk);
+  border-radius:4px;display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:15px;
+  color:var(--gold-dk);
+}
+.footer-info{
+  font-family:'JetBrains Mono',monospace;font-size:9px;
+  letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--text-3);line-height:1.7;
+}
+</style>
+</head>
+<body>
+
+<!-- ════════ COVER ════════ -->
+<div class="cover">
+  <div class="cover-bg"></div>
+  <div class="cover-grid"></div>
+  <div class="cover-panel"></div>
+  <div class="cover-ghost">26%</div>
+
+  <div class="cover-top">
+    <div class="cover-brand">
+      <div class="cover-mark">T</div>
+      <div class="cover-brand-name">Telco Analytics<br>Intelligence Division</div>
+    </div>
+    <div class="cover-badge">Confidential · Q4 2024</div>
+  </div>
+
+  <div class="cover-main">
+    <div class="cover-eyebrow">Strategic Intelligence Report</div>
+    <h1 class="cover-title">
+      Customer<br>
+      <em>Churn</em><br>
+      Analysis
+    </h1>
+    <div class="cover-subtitle">Telecom Industry — Full Base Study</div>
+
+    <div class="cover-kpis">
+      <div class="ck">
+        <div class="ck-val">7,043</div>
+        <div class="ck-label">Customers Analysed</div>
+      </div>
+      <div class="ck">
+        <div class="ck-val danger">26.5%</div>
+        <div class="ck-label">Overall Churn Rate</div>
+      </div>
+      <div class="ck">
+        <div class="ck-val safe">$3.4M</div>
+        <div class="ck-label">Annual Revenue at Risk</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="cover-footer-text">Analytics Division &nbsp;·&nbsp; February 2024 &nbsp;·&nbsp; Version 2.0</div>
+    <div class="cover-conf">Internal Use Only</div>
+  </div>
+</div>
+
+<div class="gold-rule"></div>
+
+<!-- ════════ BODY ════════ -->
+<div class="report">
+
+  <!-- 01 EXECUTIVE SUMMARY -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">01 —</span>
+      <h2 class="section-title">Executive Summary</h2>
+    </div>
+
+    <div class="exec-intro">
+      This report examines churn patterns across <strong>7,043 telecom customers</strong>, identifying key risk segments and actionable retention levers. At a <strong>26.5% churn rate</strong>, the business is losing revenue at an accelerated pace — driven primarily by contract type, tenure, and internet service configuration. Month-to-month contracts and fiber optic users represent the highest-risk cohorts, while long-tenure, two-year contract holders show strong retention anchors.
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="kpi-icon">📊</div>
+        <div class="kpi-label">Total Customers</div>
+        <div class="kpi-val">7,043</div>
+        <div class="kpi-sub">Full dataset analysed</div>
+      </div>
+      <div class="kpi red">
+        <div class="kpi-icon">⚠️</div>
+        <div class="kpi-label">Churned Customers</div>
+        <div class="kpi-val">1,869</div>
+        <div class="kpi-sub">26.5% of total base</div>
+      </div>
+      <div class="kpi green">
+        <div class="kpi-icon">✅</div>
+        <div class="kpi-label">Retained Customers</div>
+        <div class="kpi-val">5,174</div>
+        <div class="kpi-sub">73.5% of total base</div>
+      </div>
+      <div class="kpi purple">
+        <div class="kpi-icon">💳</div>
+        <div class="kpi-label">Avg Monthly Charge</div>
+        <div class="kpi-val">$64.8</div>
+        <div class="kpi-sub">Churned avg: $74.4</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 CHURN OVERVIEW -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">02 —</span>
+      <h2 class="section-title">Churn Overview</h2>
+    </div>
+
+    <div class="chart-grid-2">
+      <div class="chart-card">
+        <div class="chart-card-title">Churn Distribution</div>
+        <div class="chart-card-sub">Retained vs. churned share of total base</div>
+        <div class="chart-wrap" style="height:260px"><canvas id="churnDonut"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-title">Churn by Contract Type</div>
+        <div class="chart-card-sub">Month-to-month contracts drive the majority of churn volume</div>
+        <div class="chart-wrap" style="height:260px"><canvas id="contractBar"></canvas></div>
+      </div>
+    </div>
+
+    <div class="chart-card chart-wide">
+      <div class="chart-card-title">Monthly Charges Distribution by Churn Status</div>
+      <div class="chart-card-sub">Churned customers cluster heavily in the $70–$100 charge bracket</div>
+      <div class="chart-wrap" style="height:210px"><canvas id="chargesLine"></canvas></div>
+    </div>
+
+    <div class="insight-row">
+      <div class="insight">
+        <div class="insight-tag red">High Risk</div>
+        <p><strong>Month-to-month contracts</strong> churn at 42.7% — nearly 4× the rate of two-year contracts at just 2.8%.</p>
+      </div>
+      <div class="insight">
+        <div class="insight-tag">Key Finding</div>
+        <p>Customers billed <strong>$70+ per month</strong> show disproportionate churn, revealing price sensitivity at premium tiers.</p>
+      </div>
+      <div class="insight">
+        <div class="insight-tag green">Positive Signal</div>
+        <p><strong>Two-year contract holders</strong> retain at 97.2% — confirming contract length as the single strongest retention lever.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 DEMOGRAPHICS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">03 —</span>
+      <h2 class="section-title">Demographic Analysis</h2>
+    </div>
+
+    <div class="chart-grid-3">
+      <div class="chart-card">
+        <div class="chart-card-title">Churn by Senior Citizen Status</div>
+        <div class="chart-card-sub">Seniors vs. non-seniors</div>
+        <div class="chart-wrap" style="height:200px"><canvas id="seniorChart"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-title">Churn by Household Type</div>
+        <div class="chart-card-sub">Partner &amp; dependent status</div>
+        <div class="chart-wrap" style="height:200px"><canvas id="householdChart"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-title">Churn Rate by Tenure Cohort</div>
+        <div class="chart-card-sub">Months with the company</div>
+        <div class="chart-wrap" style="height:200px"><canvas id="tenureChart"></canvas></div>
+      </div>
+    </div>
+
+    <div class="insight-row">
+      <div class="insight">
+        <div class="insight-tag red">High Risk</div>
+        <p><strong>Senior citizens</strong> churn at 41.7% vs 23.6% for non-seniors. Service complexity and support quality are likely contributors.</p>
+      </div>
+      <div class="insight">
+        <div class="insight-tag red">High Risk</div>
+        <p>Customers <strong>without partners or dependents</strong> churn at 33% — greater mobility and fewer service ties amplify switching.</p>
+      </div>
+      <div class="insight">
+        <div class="insight-tag green">Positive Signal</div>
+        <p>Customers beyond <strong>24 months tenure</strong> churn below 10%. Surviving year one is the critical retention milestone.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 SERVICE ANALYSIS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">04 —</span>
+      <h2 class="section-title">Service &amp; Product Analysis</h2>
+    </div>
+
+    <div class="chart-grid-2">
+      <div class="chart-card">
+        <div class="chart-card-title">Churn Rate by Internet Service Type</div>
+        <div class="chart-card-sub">Fiber optic subscribers exhibit the highest churn rate at 30.7%</div>
+        <div class="chart-wrap" style="height:240px"><canvas id="internetChart"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-title">Churn Rate by Payment Method</div>
+        <div class="chart-card-sub">Electronic check users churn at 3× the rate of auto-pay customers</div>
+        <div class="chart-wrap" style="height:240px"><canvas id="paymentChart"></canvas></div>
+      </div>
+    </div>
+
+    <div class="chart-card chart-wide">
+      <div class="chart-card-title">Add-on Service Impact on Churn Rate</div>
+      <div class="chart-card-sub">Customers without security and tech support add-ons churn at nearly 3× the rate of those with these services</div>
+      <div class="chart-wrap" style="height:220px"><canvas id="addonsChart"></canvas></div>
+    </div>
+  </div>
+
+  <!-- 05 RISK MATRIX -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">05 —</span>
+      <h2 class="section-title">Risk Segmentation Matrix</h2>
+    </div>
+
+    <div class="table-wrap">
+      <table class="heatmap-table">
+        <thead>
+          <tr>
+            <th>Customer Segment</th>
+            <th>Customers</th>
+            <th>Churn Rate</th>
+            <th>Risk Level</th>
+            <th>Churned Vol.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Month-to-Month · Fiber · No Security</strong></td>
+            <td>1,240</td>
+            <td><div class="bar-cell"><div class="mini-bar" style="width:62%;background:var(--churn-lt);opacity:0.75"></div><span class="crv" style="color:var(--churn-lt)">62.4%</span></div></td>
+            <td><span class="badge cr">Critical</span></td>
+            <td style="color:var(--churn-lt);font-family:'JetBrains Mono',monospace;font-size:12px">774</td>
+          </tr>
+          <tr>
+            <td><strong>Month-to-Month · Electronic Check</strong></td>
+            <td>1,071</td>
+            <td><div class="bar-cell"><div class="mini-bar" style="width:45%;background:var(--churn-lt);opacity:0.65"></div><span class="crv" style="color:var(--churn-lt)">45.3%</span></div></td>
+            <td><span class="badge hi">High</span></td>
+            <td style="color:var(--churn-lt);font-family:'JetBrains Mono',monospace;font-size:12px">485</td>
+          </tr>
+          <tr>
+            <td><strong>Senior Citizens · Month-to-Month</strong></td>
+            <td>620</td>
+            <td><div class="bar-cell"><div class="mini-bar" style="width:42%;background:var(--warn-lt);opacity:0.75"></div><span class="crv" style="color:var(--warn-lt)">41.7%</span></div></td>
+            <td><span class="badge md">Medium-High</span></td>
+            <td style="color:var(--warn-lt);font-family:'JetBrains Mono',monospace;font-size:12px">259</td>
+          </tr>
+          <tr>
+            <td><strong>Fiber Optic · Tenure &lt; 12 Months</strong></td>
+            <td>890</td>
+            <td><div class="bar-cell"><div class="mini-bar" style="width:38%;background:var(--warn-lt);opacity:0.65"></div><span class="crv" style="color:var(--warn-lt)">38.2%</span></div></td>
+            <td><span class="badge md">Medium</span></td>
+            <td style="color:var(--warn-lt);font-family:'JetBrains Mono',monospace;font-size:12px">340</td>
+          </tr>
+          <tr>
+            <td><strong>One-Year Contract · No Add-ons</strong></td>
+            <td>540</td>
+            <td><div class="bar-cell"><div class="mini-bar" style="width:11%;background:var(--retain-lt);opacity:0.8"></div><span class="crv" style="color:var(--retain-lt)">11.3%</span></div></td>
+            <td><span class="badge lo">Low-Medium</span></td>
+            <td style="color:var(--retain-lt);font-family:'JetBrains Mono',monospace;font-size:12px">61</td>
+          </tr>
+          <tr>
+            <td><strong>Two-Year Contract · Auto-Payment</strong></td>
+            <td>1,100</td>
+            <td><div class="bar-cell"><div class="mini-bar" style="width:3%;background:var(--retain-lt)"></div><span class="crv" style="color:var(--retain-lt)">2.8%</span></div></td>
+            <td><span class="badge lo">Low</span></td>
+            <td style="color:var(--retain-lt);font-family:'JetBrains Mono',monospace;font-size:12px">31</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 06 RECOMMENDATIONS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">06 —</span>
+      <h2 class="section-title">Strategic Recommendations</h2>
+    </div>
+
+    <div class="rec-grid">
+      <div class="rec-card">
+        <div class="rec-icon">📋</div>
+        <div>
+          <div class="rec-title">Contract Upgrade Incentive Programme</div>
+          <div class="rec-body">Deploy targeted offers to month-to-month customers in their 3rd–6th month to migrate to annual or two-year contracts. A 15–20% discount can recover 5–8× its cost in retained revenue.</div>
+          <span class="rec-priority p1">Priority 1 — Immediate</span>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-icon">🛡️</div>
+        <div>
+          <div class="rec-title">90-Day Fiber Onboarding Lock-In</div>
+          <div class="rec-body">Introduce a structured onboarding programme for new fiber subscribers bundling free online security and tech support trials during the highest-risk 0–12 month churn window.</div>
+          <span class="rec-priority p1">Priority 1 — Immediate</span>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-icon">💳</div>
+        <div>
+          <div class="rec-title">Payment Method Migration Campaign</div>
+          <div class="rec-body">Electronic check users churn at 3× the rate of auto-pay customers. Offer a $5/month discount for switching to auto-pay, targeting 40% conversion within 6 months.</div>
+          <span class="rec-priority p2">Priority 2 — Q1 2025</span>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-icon">👴</div>
+        <div>
+          <div class="rec-title">Senior Customer Excellence Tier</div>
+          <div class="rec-body">Launch a dedicated senior support tier with simplified billing, proactive check-in calls, and priority tech support. Partner with senior community organisations to build brand trust.</div>
+          <span class="rec-priority p2">Priority 2 — Q1 2025</span>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-icon">📡</div>
+        <div>
+          <div class="rec-title">Fiber Service Quality Recovery</div>
+          <div class="rec-body">Investigate drivers behind the 30.7% fiber churn rate. Conduct NPS surveys with churned fiber customers and address reliability, speed consistency, and pricing perception issues.</div>
+          <span class="rec-priority p2">Priority 2 — Q2 2025</span>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-icon">🎯</div>
+        <div>
+          <div class="rec-title">Real-Time Predictive Churn Scoring</div>
+          <div class="rec-body">Deploy an ML churn score using contract type, tenure, payment method, and add-on adoption signals. Trigger automated retention workflows when a customer's score exceeds the defined threshold.</div>
+          <span class="rec-priority p3">Priority 3 — Q2 2025</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /report -->
+
+<div class="gold-rule"></div>
+
+<footer>
+  <div class="footer-brand">
+    <div class="footer-mark">T</div>
+    <div class="footer-info">
+      Telco Analytics Intelligence Division<br>
+      Customer Churn Analysis · Q4 2024
+    </div>
+  </div>
+  <div class="footer-info" style="text-align:right">
+    Confidential — Internal Use Only<br>
+    February 2024 · Version 2.0
+  </div>
+</footer>
+
+<script>
+Chart.defaults.color = '#7a6e5a';
+Chart.defaults.borderColor = 'rgba(196,158,76,0.1)';
+Chart.defaults.font.family = "'Inter', sans-serif";
+
+const G  = '#c49e4c';
+const GL = '#ddb96a';
+const C  = '#b83232';
+const CL = '#e06050';
+const R  = '#2d7a62';
+const RL = '#4db890';
+const W  = '#d4a030';
+
+const noLeg = { legend:{ display:false } };
+const grid = {
+  grid:  { color:'rgba(196,158,76,0.09)', drawBorder:false },
+  ticks: { color:'#7a6e5a', font:{ size:11 } }
+};
+const leg = { color:'#9a9080', padding:14, boxWidth:11, font:{ size:11 } };
+
+/* 1 — DONUT */
+new Chart(document.getElementById('churnDonut'),{
+  type:'doughnut',
+  data:{ labels:['Retained','Churned'], datasets:[{ data:[5174,1869], backgroundColor:[RL,CL], borderWidth:0, hoverOffset:10 }] },
+  options:{ cutout:'74%', plugins:{ legend:{ display:true, position:'bottom', labels:leg }, tooltip:{ callbacks:{ label:ctx=>`  ${ctx.label}: ${ctx.parsed.toLocaleString()} (${(ctx.parsed/7043*100).toFixed(1)}%)` } } } }
+});
+
+/* 2 — CONTRACT BAR */
+new Chart(document.getElementById('contractBar'),{
+  type:'bar',
+  data:{ labels:['Month-to-Month','One Year','Two Year'], datasets:[{ label:'Retained', data:[2220,1307,1647], backgroundColor:RL+'bb' },{ label:'Churned', data:[1655,166,48], backgroundColor:CL+'bb' }] },
+  options:{ plugins:{ legend:{ display:true, position:'bottom', labels:leg } }, scales:{ x:{ stacked:true, ...grid }, y:{ stacked:true, ...grid } } }
+});
+
+/* 3 — CHARGES LINE */
+new Chart(document.getElementById('chargesLine'),{
+  type:'line',
+  data:{ labels:['$0-20','$20-40','$40-60','$60-70','$70-80','$80-90','$90-100','$100+'],
+    datasets:[
+      { label:'Retained', data:[380,540,760,820,690,540,390,220], borderColor:RL, backgroundColor:RL+'22', fill:true, tension:0.42, pointRadius:3 },
+      { label:'Churned',  data:[40,80,140,180,310,420,380,290],   borderColor:CL, backgroundColor:CL+'22', fill:true, tension:0.42, pointRadius:3 }
+    ]
+  },
+  options:{ plugins:{ legend:{ display:true, position:'bottom', labels:leg } }, scales:{ x:grid, y:{ ...grid, beginAtZero:true } } }
+});
+
+/* 4 — SENIOR */
+new Chart(document.getElementById('seniorChart'),{
+  type:'bar',
+  data:{ labels:['Non-Senior','Senior'], datasets:[{ data:[23.6,41.7], backgroundColor:[RL+'bb',CL+'bb'], borderRadius:7, borderSkipped:false }] },
+  options:{ plugins:noLeg, scales:{ x:grid, y:{ ...grid, beginAtZero:true, max:55, ticks:{ callback:v=>v+'%', color:'#7a6e5a', font:{size:11} } } } }
+});
+
+/* 5 — HOUSEHOLD */
+new Chart(document.getElementById('householdChart'),{
+  type:'bar',
+  data:{ labels:['No Partner/Dep.','Partner Only','Dep. Only','Partner+Dep.'],
+    datasets:[{ data:[33.0,19.8,17.5,12.3], backgroundColor:[CL+'bb',W+'99',W+'66',RL+'bb'], borderRadius:7, borderSkipped:false }] },
+  options:{ plugins:noLeg, scales:{ x:{ ...grid, ticks:{ ...grid.ticks, maxRotation:0, font:{size:10} } }, y:{ ...grid, beginAtZero:true, max:45, ticks:{ callback:v=>v+'%', color:'#7a6e5a', font:{size:11} } } } }
+});
+
+/* 6 — TENURE */
+new Chart(document.getElementById('tenureChart'),{
+  type:'line',
+  data:{ labels:['0-6m','6-12m','12-24m','24-36m','36-48m','48-60m','60m+'],
+    datasets:[{ data:[48.2,38.7,28.4,18.2,11.5,7.3,4.1], borderColor:GL, backgroundColor:G+'18', fill:true, tension:0.45, pointRadius:4, pointBackgroundColor:GL, pointBorderWidth:0 }] },
+  options:{ plugins:noLeg, scales:{ x:grid, y:{ ...grid, beginAtZero:true, ticks:{ callback:v=>v+'%', color:'#7a6e5a', font:{size:11} } } } }
+});
+
+/* 7 — INTERNET DONUT */
+new Chart(document.getElementById('internetChart'),{
+  type:'doughnut',
+  data:{ labels:['Fiber Optic','DSL','No Internet'], datasets:[{ data:[30.7,19.0,7.4], backgroundColor:[CL,GL,RL], borderWidth:0, hoverOffset:8 }] },
+  options:{ cutout:'65%', plugins:{ legend:{ display:true, position:'bottom', labels:leg }, tooltip:{ callbacks:{ label:ctx=>`  ${ctx.label}: ${ctx.parsed}% churn rate` } } } }
+});
+
+/* 8 — PAYMENT HORIZONTAL */
+new Chart(document.getElementById('paymentChart'),{
+  type:'bar',
+  data:{ labels:['Electronic Check','Mailed Check','Bank Transfer','Credit Card'],
+    datasets:[{ data:[45.3,19.1,16.7,15.2], backgroundColor:[CL+'cc',W+'88',RL+'88',RL+'cc'], borderRadius:7, borderSkipped:false }] },
+  options:{ indexAxis:'y', plugins:noLeg, scales:{ x:{ ...grid, beginAtZero:true, max:55, ticks:{ callback:v=>v+'%', color:'#7a6e5a', font:{size:11} } }, y:grid } }
+});
+
+/* 9 — ADD-ONS GROUPED */
+new Chart(document.getElementById('addonsChart'),{
+  type:'bar',
+  data:{ labels:['Online Security','Tech Support','Online Backup','Device Protection','Streaming TV','Streaming Movies'],
+    datasets:[
+      { label:'Without Add-on', data:[41.8,41.6,40.0,39.1,30.1,30.0], backgroundColor:CL+'aa', borderRadius:4 },
+      { label:'With Add-on',    data:[14.6,15.1,21.6,22.5,30.1,29.9], backgroundColor:RL+'aa', borderRadius:4 }
+    ]
+  },
+  options:{ plugins:{ legend:{ display:true, position:'bottom', labels:leg } }, scales:{ x:grid, y:{ ...grid, beginAtZero:true, max:55, ticks:{ callback:v=>v+'%', color:'#7a6e5a', font:{size:11} } } } }
+});
+</script>
+</body>
+</html>

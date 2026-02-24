@@ -16,15 +16,15 @@ let config = {
     "twitter": "https://x.com/RBerhane2008"
   },
   "files": {
-    "resume": "documents/Rodas-Berhane-Resume.pdf",
+    "resume": "documents/RB_CV_Updated.pdf",
     "profileImage": "images/profile.jpg"
   },
   "theme": {
-    "primaryPink": "#FF1493",
-    "deepRose": "#C2185B",
-    "darkBackground": "#111111",
+    "primaryPink": "#C9897A",
+    "deepRose": "#A06B5E",
+    "darkBackground": "#100D14",
     "lightBackground": "#f8f8f8",
-    "darkText": "#ffffff",
+    "darkText": "#EDE0DC",
     "lightText": "#1a1a1a",
     "darkSecondaryText": "#b8b8b8",
     "lightSecondaryText": "#666666",
@@ -52,8 +52,8 @@ let config = {
       ]
     },
     "paragraphs": [
-      "My name is Rodas. I graduated in Applied Mathematics and Computer Science because I was genuinely fascinated by how numbers and systems work together — not just the theory, but how they solve real problems.",
-      "That passion for data naturally led me to pursue an MSc in Business Analytics at UCD on a full scholarship. I wanted to understand not just the technical side, but the business impact — what the data actually means and how to use it to make better decisions.",
+      "My name is Rodas. I graduated in Applied Mathematics and Computer Science because I was genuinely fascinated by how numbers and systems work together, not just the theory, but how they solve real problems.",
+      "That passion for data naturally led me to pursue an MSc in Business Analytics at UCD on a full scholarship. I wanted to understand not just the technical side, but the business impact: what the data actually means and how to use it to make better decisions.",
       "Now I'm focused on bridging that gap between complex analysis and clear insights. Whether it's building models, querying databases, or visualising data in Tableau, I care about the story the numbers tell and how it drives action.",
       "Based in Dublin, graduating 2026. Looking for data analytics, BI, or strategy roles where I can keep solving problems that matter."
     ],
@@ -154,7 +154,7 @@ let config = {
       "tags": ["Python", "Pandas", "SQL", "Tableau"],
       "category": "python tableau sql",
       "links": {
-        "report": "#",
+        "report": "documents/telco_churn_report.html",
         "tableau": "https://public.tableau.com/app/profile/rodiiberhane/viz/churnpredictionviz/Dashboard1"
       }
     },
@@ -201,9 +201,30 @@ let config = {
       "description": "Assisted in organising annual academic events across the institution, coordinating logistics and supporting student engagement activities."
     }
   ],
+  "skills": [
+    { "name": "Tableau",          "icon": "fas fa-chart-pie",       "category": "BI",           "lane": 1 },
+    { "name": "Power BI",         "icon": "fas fa-chart-line",      "category": "BI",           "lane": 1 },
+    { "name": "SPSS",             "icon": "fas fa-flask",           "category": "Analytics",    "lane": 1 },
+    { "name": "Excel",            "icon": "fas fa-file-excel",      "category": "Productivity", "lane": 1 },
+    { "name": "Word",             "icon": "fas fa-file-word",       "category": "Productivity", "lane": 1 },
+    { "name": "PowerPoint",       "icon": "fas fa-file-powerpoint", "category": "Productivity", "lane": 1 },
+    { "name": "Python",           "icon": "fab fa-python",          "category": "Language",     "lane": 2 },
+    { "name": "R",                "icon": "fas fa-chart-bar",       "category": "Language",     "lane": 2 },
+    { "name": "Java",             "icon": "fab fa-java",            "category": "Language",     "lane": 2 },
+    { "name": "SQL",              "icon": "fas fa-database",        "category": "Database",     "lane": 2 },
+    { "name": "DuckDB",           "icon": "fas fa-database",        "category": "Database",     "lane": 2 },
+    { "name": "PostgreSQL",       "icon": "fas fa-server",          "category": "Database",     "lane": 2 },
+    { "name": "HTML",             "icon": "fab fa-html5",           "category": "Web",          "lane": 2 },
+    { "name": "CSS",              "icon": "fab fa-css3-alt",        "category": "Web",          "lane": 2 },
+    { "name": "Git",              "icon": "fab fa-git-alt",         "category": "Dev Tools",    "lane": 2 },
+    { "name": "Machine Learning", "icon": "fas fa-brain",           "category": "AI",           "lane": 3 },
+    { "name": "Agentic AI",       "icon": "fas fa-robot",           "category": "AI",           "lane": 3 },
+    { "name": "AWS",              "icon": "fab fa-aws",             "category": "Cloud",        "lane": 3 },
+    { "name": "FICO Xpress",      "icon": "fas fa-cogs",            "category": "Optimisation", "lane": 3 }
+  ],
   "contact": {
-    "heading": "Let's create something meaningful together",
-    "message": "I'm always open to discussing data-driven opportunities, analytics projects, or just a conversation about turning complex problems into clear solutions. Feel free to reach out.",
+    "heading": "",
+    "message": "Open to new opportunities across Data Analytics, Business Analytics, Business Intelligence, and Data Science. I'm especially interested in roles where data can drive clear decisions, improve performance, and solve real business problems. If you think there's a fit, feel free to get in touch by email.",
     "formPlaceholders": {
       "name": "Your name",
       "email": "your@email.com",
@@ -272,9 +293,6 @@ function populateContent() {
         const title = `${config.personal.firstName} ${config.personal.lastName}`;
         document.getElementById('pageTitle').textContent = title;
 
-        // Navbar
-        document.getElementById('firstName').textContent = config.personal.firstName;
-        document.getElementById('lastName').textContent = config.personal.lastName;
         document.getElementById('homeBio').textContent = `${config.personal.bio} · ${config.personal.location}`;
     }
 
@@ -410,6 +428,52 @@ function populateContent() {
         document.getElementById('projectsContainer').innerHTML = projectsHtml;
     }
 
+    // Skills — 3-Lane Tech Runway Marquee
+    if (config.skills && document.getElementById('skillsRow')) {
+        const lanes = [
+            { id: 1, label: 'Data & BI',               dur: '38s', dir: 'normal'  },
+            { id: 2, label: 'Programming & Databases',  dur: '28s', dir: 'reverse' },
+            { id: 3, label: 'AI & Cloud',               dur: '46s', dir: 'normal'  }
+        ];
+
+        const chipHtml = skills => skills.map(s => `
+            <div class="skill-chip">
+                <div class="chip-main">
+                    <i class="${s.icon}"></i>
+                    <span>${s.name}</span>
+                </div>
+                <span class="chip-cat">${s.category}</span>
+            </div>`).join('');
+
+        const lanesHtml = lanes.map(lane => {
+            const chips = config.skills.filter(s => s.lane === lane.id);
+            const content = chipHtml(chips);
+            return `
+            <div class="lane-row">
+                <div class="lane-label">${lane.label}</div>
+                <div class="lane-scroll">
+                    <div class="lane-content" style="animation-duration:${lane.dur};animation-direction:${lane.dir}">
+                        ${content}${content}
+                    </div>
+                </div>
+            </div>`;
+        }).join('');
+
+        const row = document.getElementById('skillsRow');
+        row.innerHTML = lanesHtml;
+
+        // Cursor spotlight
+        row.addEventListener('mousemove', e => {
+            const r = row.getBoundingClientRect();
+            row.style.setProperty('--spot-x', `${e.clientX - r.left}px`);
+            row.style.setProperty('--spot-y', `${e.clientY - r.top}px`);
+        });
+        row.addEventListener('mouseleave', () => {
+            row.style.setProperty('--spot-x', '-9999px');
+            row.style.setProperty('--spot-y', '-9999px');
+        });
+    }
+
     // Volunteer
     if (config.volunteer) {
         let volunteerHtml = config.volunteer.map(vol => `
@@ -443,7 +507,7 @@ function populateContent() {
 
 /* ==================== TYPEWRITER EFFECT ==================== */
 function initTypewriter() {
-    const sentence = "Welcome \u2014 let\u2019s meet. I\u2019m Rodas. I bring chaos to clarity to build meaningful stories.";
+    const sentence = "Welcome let\u2019s meet. I\u2019m Rodas. I bring chaos to order to build meaningful stories.";
     const el = document.getElementById('typewriter');
     if (!el) return;
 
@@ -476,7 +540,7 @@ function initHeroCanvas() {
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
 
-    const PINK = 'rgba(255, 20, 147,';
+    const PINK = 'rgba(201, 137, 122,';
     const GRID = 65;
     const PARTICLE_COUNT = 68;
 
@@ -621,8 +685,8 @@ function initHeroCanvas() {
 
         // Radial glow following mouse
         const g = ctx.createRadialGradient(smoothX, smoothY, 0, smoothX, smoothY, Math.max(canvas.width, canvas.height) * 0.44);
-        g.addColorStop(0, 'rgba(255, 20, 147, 0.07)');
-        g.addColorStop(0.45, 'rgba(194, 24, 91, 0.03)');
+        g.addColorStop(0, 'rgba(201, 137, 122, 0.07)');
+        g.addColorStop(0.45, 'rgba(160, 107, 94, 0.03)');
         g.addColorStop(1, 'transparent');
         ctx.fillStyle = g;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -823,21 +887,152 @@ function initSmoothScroll() {
 
 /* ==================== FORM HANDLING ==================== */
 function initFormHandling() {
-    const contactForm = document.getElementById('contactFormElement');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function (e) {
-            e.preventDefault();
+    // ── EmailJS credentials ──────────────────────────────────────────
+    // 1. Sign up free at https://www.emailjs.com
+    // 2. Add your Gmail (or any) email service  → copy the Service ID
+    // 3. Create a template with variables {{from_name}}, {{from_email}}, {{message}}
+    //    set "To Email" to rodas.okubagabir@ucdconnect.ie  → copy the Template ID
+    // 4. Go to Account → Public Key  → copy it here
+    const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
+    const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+    const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
 
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
+    // Initialise EmailJS
+    if (typeof emailjs !== 'undefined') {
+        emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+    }
 
-            const subject = `New Message from ${name}`;
-            const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+    const form        = document.getElementById('contactFormElement');
+    const submitBtn   = document.getElementById('formSubmitBtn');
+    const btnText     = submitBtn ? submitBtn.querySelector('.btn-text')    : null;
+    const btnSpinner  = submitBtn ? submitBtn.querySelector('.btn-spinner')  : null;
+    const successOverlay = document.getElementById('formSuccessOverlay');
+    const resetBtn    = document.getElementById('formResetBtn');
+    const generalErr  = document.getElementById('formGeneralError');
 
-            window.location.href = `mailto:${config.personal.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    if (!form) return;
 
-            contactForm.reset();
+    // ── Validation helpers ───────────────────────────────────────────
+    function setError(fieldId, groupId, msg) {
+        const group = document.getElementById(groupId);
+        const err   = document.getElementById('err-' + fieldId);
+        if (group) { group.classList.add('is-error'); group.classList.remove('is-valid'); }
+        if (err)   err.textContent = msg;
+    }
+
+    function setValid(fieldId, groupId) {
+        const group = document.getElementById(groupId);
+        const err   = document.getElementById('err-' + fieldId);
+        if (group) { group.classList.remove('is-error'); group.classList.add('is-valid'); }
+        if (err)   err.textContent = '';
+    }
+
+    function clearState(fieldId, groupId) {
+        const group = document.getElementById(groupId);
+        const err   = document.getElementById('err-' + fieldId);
+        if (group) { group.classList.remove('is-error', 'is-valid'); }
+        if (err)   err.textContent = '';
+    }
+
+    function validateForm() {
+        let valid = true;
+        const name    = document.getElementById('name').value.trim();
+        const email   = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+        const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!name || name.length < 2) {
+            setError('name', 'fg-name', 'Please enter your name (at least 2 characters).');
+            valid = false;
+        } else {
+            setValid('name', 'fg-name');
+        }
+
+        if (!email || !emailRe.test(email)) {
+            setError('email', 'fg-email', 'Please enter a valid email address.');
+            valid = false;
+        } else {
+            setValid('email', 'fg-email');
+        }
+
+        if (!message || message.length < 10) {
+            setError('message', 'fg-message', 'Message must be at least 10 characters.');
+            valid = false;
+        } else {
+            setValid('message', 'fg-message');
+        }
+
+        return valid;
+    }
+
+    // ── Inline validation on blur ────────────────────────────────────
+    ['name', 'email', 'message'].forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.addEventListener('blur',  () => validateForm());
+        el.addEventListener('input', () => {
+            const groupId = 'fg-' + id;
+            const group = document.getElementById(groupId);
+            if (group && group.classList.contains('is-error')) validateForm();
+        });
+    });
+
+    // ── Submit ───────────────────────────────────────────────────────
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        if (generalErr) generalErr.textContent = '';
+        if (!validateForm()) return;
+
+        // Loading state
+        if (submitBtn)  submitBtn.disabled = true;
+        if (btnText)    btnText.style.display   = 'none';
+        if (btnSpinner) btnSpinner.style.display = 'inline';
+
+        try {
+            if (typeof emailjs === 'undefined' ||
+                EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
+                // EmailJS not configured — fallback to mailto
+                const name    = document.getElementById('name').value.trim();
+                const email   = document.getElementById('email').value.trim();
+                const message = document.getElementById('message').value.trim();
+                const subject = encodeURIComponent(`Portfolio enquiry from ${name}`);
+                const body    = encodeURIComponent(`From: ${name}\nEmail: ${email}\n\n${message}`);
+                window.open(`mailto:rodas.okubagabir@ucdconnect.ie?subject=${subject}&body=${body}`);
+                throw new Error('mailto_fallback');
+            }
+
+            await emailjs.sendForm(
+                EMAILJS_SERVICE_ID,
+                EMAILJS_TEMPLATE_ID,
+                form
+            );
+
+            // Success
+            form.reset();
+            ['name','email','message'].forEach(id => clearState(id, 'fg-' + id));
+            if (successOverlay) successOverlay.classList.add('visible');
+
+        } catch (err) {
+            if (err.message === 'mailto_fallback') {
+                // Still show success UI after opening mail client
+                form.reset();
+                ['name','email','message'].forEach(id => clearState(id, 'fg-' + id));
+                if (successOverlay) successOverlay.classList.add('visible');
+            } else {
+                if (generalErr) generalErr.textContent =
+                    'Something went wrong. Please email me directly at rodas.okubagabir@ucdconnect.ie';
+            }
+        } finally {
+            if (submitBtn)  submitBtn.disabled  = false;
+            if (btnText)    btnText.style.display    = 'inline';
+            if (btnSpinner) btnSpinner.style.display = 'none';
+        }
+    });
+
+    // ── Reset back to form ───────────────────────────────────────────
+    if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+            if (successOverlay) successOverlay.classList.remove('visible');
         });
     }
 }
