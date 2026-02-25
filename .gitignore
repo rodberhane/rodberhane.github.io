@@ -1,0 +1,12 @@
+# Private config — never push real credentials
+static_private_info.json
+
+# macOS
+.DS_Store
+.AppleDouble
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*.swo
